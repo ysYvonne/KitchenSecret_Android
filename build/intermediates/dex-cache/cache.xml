@@ -5,7 +5,7 @@
         jar="F:\KitchenSecret_Android\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         revision="24.0.0"
-        sha1="6b479a74e7de61dc78e1fedeaa49305052235fe8">
+        sha1="b9ea69c854175d598abc69afe1b79f4d86fcf211">
         <dex dex="F:\KitchenSecret_Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_996bcf8094c538291c2a7317e283f6f8ab2a8f5f\classes.dex" />
     </item>
     <item
@@ -40,7 +40,7 @@
         jar="F:\KitchenSecret_Android\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         revision="24.0.0"
-        sha1="0eeb51710b0f7db3575449a3a7985fd8372694e0">
+        sha1="4fc4f8724d2df88574d7f7e2cec4e40856a5ca52">
         <dex dex="F:\KitchenSecret_Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_2b77c639cfca13177b9058bb1f2e456a73255171\classes.dex" />
     </item>
     <item

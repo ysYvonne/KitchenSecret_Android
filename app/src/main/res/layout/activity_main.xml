@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -36,7 +35,7 @@
                 android:drawableTop="@drawable/tab_dish_selector"
                 android:gravity="center"
                 android:paddingTop="5dp"
-                android:text="@string/Recipe"
+                android:text="@string/recipe"
                 android:textColor="@color/white"
                 android:textSize="10sp"
                 android:singleLine="true" />
@@ -57,7 +56,7 @@
                 android:drawableTop="@drawable/tab_dish_selector"
                 android:gravity="center"
                 android:paddingTop="5dp"
-                android:text="@string/discover"
+                android:text="@string/community"
                 android:textColor="@color/white"
                 android:textSize="10sp" />
 
@@ -127,7 +126,7 @@
                 android:drawableTop="@drawable/tab_setting_selector"
                 android:gravity="center"
                 android:paddingTop="5dp"
-                android:text="@string/MySetting"
+                android:text="@string/mySetting"
                 android:textColor="@color/white"
                 android:textSize="10sp" />
         </RelativeLayout>

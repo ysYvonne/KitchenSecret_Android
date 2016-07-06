@@ -1,6 +1,7 @@
 package com.meetyouatnowhere.kitchensecret_android.activities;
 
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,13 +27,37 @@ public class MainActivity extends AppCompatActivity {
         btn_search = (Button) findViewById(R.id.search_btn);
         btn_mySetting = (Button) findViewById(R.id.mySetting_btn);
 
-       // FragmentManager fragmentManager = getSupportFragmentManager();
-       // fragmentManager.beginTransaction().replace(R.id.contentFrame,new )
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.contentFrame, new RecipeFragment()).commit();
 
         btn_recipe.setOnClickListener(new View.OnClickListener(){
-
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.contentFrame, new RecipeFragment()).commit();
+            }
         });
+
+        /////////////btn_clickListener
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

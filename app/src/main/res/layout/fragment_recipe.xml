@@ -1,0 +1,88 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meetyouatnowhere.kitchensecret_android.activities.RecipeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        android:layout_gravity="center_horizontal|top"
+        android:background="@mipmap/title_nav_bar"
+        android:id="@+id/main_relativeLayout">
+
+        <Button
+            android:layout_width="@dimen/title_bar_height"
+            android:layout_height="match_parent"
+            android:id="@+id/add_btn"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:background="@mipmap/add_recipe" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView"
+            android:layout_alignParentTop="false"
+            android:text="@string/kitchen_secret"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/title_big"
+            android:layout_alignParentBottom="false"
+            android:gravity="center_vertical" />
+
+        <Button
+            android:layout_width="@dimen/title_bar_height"
+            android:layout_height="match_parent"
+            android:id="@+id/search_btn"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/abc_ic_search_api_material" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_gravity="left|top"
+        android:layout_below="@+id/main_relativeLayout"
+        android:layout_alignParentStart="true"
+        android:id="@+id/relativeLayout">
+
+        <com.meetyouatnowhere.kitchensecret_android.activities.bannerview.ViewFlow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/view_flow"
+            android:layout_gravity="left|top"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="47dp"
+            android:id="@+id/relativeLayout2"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true">
+
+        </RelativeLayout>
+
+        <com.meetyouatnowhere.kitchensecret_android.activities.bannerview.CircleFlowIndicator
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewCircle_flow"
+        android:layout_gravity="center_horizontal|bottom"
+            android:gravity="center"
+        android:padding="3dip"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
+
