@@ -27,7 +27,7 @@
             android:gravity="center|bottom">
 
             <Button
-                android:id="@+id/Recipe_btn"
+                android:id="@+id/recipe_btn"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -51,7 +51,7 @@
 
             <Button
                 android:id="@+id/myCommunity_btn"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/bot_bar"
                 android:drawableTop="@drawable/tab_dish_selector"
@@ -120,7 +120,7 @@
             android:gravity="center|bottom">
 
             <Button
-                android:id="@+id/MySetting_btn"
+                android:id="@+id/mySetting_btn"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/bot_bar"
