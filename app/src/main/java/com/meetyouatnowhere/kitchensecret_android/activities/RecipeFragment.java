@@ -80,13 +80,13 @@ public class RecipeFragment extends Fragment{
         initView(view);
         // Inflate the layout for this fragment
         imageUrlList
-                .add("http://b.hiphotos.baidu.com/image/pic/item/d01373f082025aaf95bdf7e4f8edab64034f1a15.jpg");
+                .add("http://photocdn.sohu.com/20150422/mp11846883_1429673028490_2.jpeg");
         imageUrlList
-                .add("http://g.hiphotos.baidu.com/image/pic/item/6159252dd42a2834da6660c459b5c9ea14cebf39.jpg");
+                .add("http://photocdn.sohu.com/20150422/mp11846883_1429673028490_8.jpeg");
         imageUrlList
-                .add("http://d.hiphotos.baidu.com/image/pic/item/adaf2edda3cc7cd976427f6c3901213fb80e911c.jpg");
+                .add("http://photocdn.sohu.com/20150422/mp11846883_1429673028490_12.jpeg");
         imageUrlList
-                .add("http://g.hiphotos.baidu.com/image/pic/item/b3119313b07eca80131de3e6932397dda1448393.jpg");
+                .add("http://photocdn.sohu.com/20150422/mp11846883_1429673028490_15.jpeg");
         initBanner(imageUrlList);
         return view;
     }
