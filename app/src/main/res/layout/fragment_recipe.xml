@@ -4,13 +4,14 @@
     android:layout_height="match_parent"
     tools:context="com.meetyouatnowhere.kitchensecret_android.activities.RecipeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Update blank fragment layout
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_bar_height"
         android:layout_gravity="center_horizontal|top"
         android:background="@mipmap/title_nav_bar"
+        android:visibility="gone"
         android:id="@+id/main_relativeLayout">
 
         <Button
@@ -38,16 +39,14 @@
             android:layout_height="match_parent"
             android:id="@+id/search_btn"
             android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/abc_ic_search_api_material" />
+            android:layout_alignParentEnd="true" />
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:layout_gravity="left|top"
-        android:layout_below="@+id/main_relativeLayout"
         android:layout_alignParentStart="true"
         android:id="@+id/relativeLayout">
 

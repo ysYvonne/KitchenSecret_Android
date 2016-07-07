@@ -5,9 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activities.MainActivity">
 
-   <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
         <!--android:theme="@style/AppTheme.Tab">-->
 
         <android.support.v7.widget.Toolbar
@@ -17,7 +15,6 @@
             android:background="?attr/colorPrimary"></android.support.v7.widget.Toolbar>
             <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
 
-    </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_main" />
 
