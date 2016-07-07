@@ -38,6 +38,9 @@
     <string name="load_tips">地址正在生成</string>
     <string name="kitchen_secret">厨房秘密</string>
     <string name="favor_dish_item">我喜爱的</string>
+    <string name="no_favor">你还没有添加任何喜爱的食物</string>
+    <string name="sort">筛选</string>
+    <string name="complete">完成</string>
 
 
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>

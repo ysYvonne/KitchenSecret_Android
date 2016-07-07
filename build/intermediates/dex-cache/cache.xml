@@ -1,3 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
+        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.0.0_dda43c57df4df9d5686c0aac5447303a38b08dbc/classes.dex" />
+    </item>
+    <item
+        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="0874286cc2fd88d54fdf130e9d5372730da6de97">
+        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.0.0_7f7dfd658f494668b489afef6eb16a1a9360ad93/classes.dex" />
+    </item>
+    <item
+        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="a0f87e99ecce20230a33c94088972c7f796f8f7a">
+        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_625fceeed26902cedb0f1976fe3b71f139ae6e7a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/yisheng/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/24.0.0/2943c74db6d4346ab8c6531adac91fa05c137c40/support-annotations-24.0.0.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="2943c74db6d4346ab8c6531adac91fa05c137c40">
+        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.0.0_5f9da4a275565281b6190b4aad4d82974eedb9f7/classes.dex" />
+    </item>
+    <item
+        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="8405aaf4652b3ddfddb6099af6eec028c18310c7">
+        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_386a39c414e1dbbdf5b5f42108e2d57733b2ed95/classes.dex" />
+    </item>
+    <item
+        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="3bd97cfefd783e9de1dd1c30574a6adb44b4409b">
+        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.0.0_2fe59ce35bc94f3e498abd887b28afc629d7687f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/libs/internal_impl-24.0.0.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="fcaf463e10e69c1923ccf1edeba3b4196d239e00">
+        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0_0cbc8a66b9e36d5e66004297b369b94224a29eee/classes.dex" />
+    </item>
+    <item
+        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="e70f608219ed6b974644c333249ab2bb7b71de98">
+        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.0.0_8f0d66d4d03a3129d186e169a31dd32d4be3abb5/classes.dex" />
+    </item>
+
+</items>
