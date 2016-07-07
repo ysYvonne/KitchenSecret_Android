@@ -2,135 +2,185 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activities.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/contentFrame"
+   <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@+id/buttonBottomLayout" />
+        android:layout_height="wrap_content">
+        <!--android:theme="@style/AppTheme.Tab">-->
 
-    <LinearLayout
-        android:id="@+id/buttonBottomLayout"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"></android.support.v7.widget.Toolbar>
+            <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_main" />
+
+    <!--<FrameLayout
+
+        android:id="@+id/realtabcontent"
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true">
 
-        <RelativeLayout
-            android:id="@+id/Recipe_rl"
-            android:layout_width="fill_parent"
+        android:layout_height="0dip"
+
+        android:layout_weight="1" />
+
+
+    <android.support.v4.app.FragmentTabHost
+
+        android:id="@android:id/tabhost"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content">
+
+        <TabWidget
+
+            android:id="@android:id/tabs"
+
+            android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center|bottom">
 
-            <Button
-                android:id="@+id/recipe_btn"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:background="@mipmap/bot_bar"
-                android:drawableTop="@drawable/tab_dish_selector"
-                android:gravity="center"
-                android:paddingTop="5dp"
-                android:text="@string/recipe"
-                android:textColor="@color/white"
-                android:textSize="10sp"
-                android:singleLine="true" />
-        </RelativeLayout>
+            android:orientation="horizontal"/>
 
-        <RelativeLayout
-            android:id="@+id/community_rl"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center|bottom">
+    </android.support.v4.app.FragmentTabHost>-->
 
-            <Button
-                android:id="@+id/myCommunity_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/bot_bar"
-                android:drawableTop="@drawable/tab_dish_selector"
-                android:gravity="center"
-                android:paddingTop="5dp"
-                android:text="@string/community"
-                android:textColor="@color/white"
-                android:textSize="10sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="25dip"
-                android:layout_marginTop="5dip"
-                android:background="@drawable/tab_notification_selector"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:visibility="gone" />
-        </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/search_rl"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center|bottom"
-            android:visibility="visible">
+    <!--<FrameLayout
+         android:id="@+id/contentFrame"
+         android:layout_width="match_parent"
+         android:layout_height="fill_parent"
+         android:layout_above="@+id/buttonBottomLayout" />
 
-            <Button
-                android:id="@+id/search_btn"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:background="@mipmap/bot_bar"
-                android:drawableTop="@drawable/tab_notification_selector"
-                android:gravity="center"
-                android:paddingTop="5dp"
-                android:text="@string/search"
-                android:textColor="@color/white"
-                android:textSize="10sp" />
+     <LinearLayout
+         android:id="@+id/buttonBottomLayout"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:layout_alignParentEnd="true"
+         android:layout_alignParentBottom="true">-->
 
-            <TextView
-                android:id="@+id/note_message_count_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="25dip"
-                android:layout_marginTop="5dip"
-                android:background="@mipmap/notification"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:visibility="gone" />
-        </RelativeLayout>
+        <!-- <RelativeLayout
+             android:id="@+id/Recipe_rl"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:gravity="center|bottom">
 
-        <RelativeLayout
-            android:id="@+id/MySetting_rl"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center|bottom">
+             <Button
+                 android:id="@+id/recipe_btn"
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentTop="true"
+                 android:background="@mipmap/bot_bar"
+                 android:drawableTop="@drawable/tab_dish_selector"
+                 android:gravity="center"
+                 android:paddingTop="5dp"
+                 android:text="@string/recipe"
+                 android:textColor="@color/white"
+                 android:textSize="10sp"
+                 android:singleLine="true" />
+         </RelativeLayout>
 
-            <Button
-                android:id="@+id/mySetting_btn"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/bot_bar"
-                android:drawableTop="@drawable/tab_setting_selector"
-                android:gravity="center"
-                android:paddingTop="5dp"
-                android:text="@string/mySetting"
-                android:textColor="@color/white"
-                android:textSize="10sp" />
-        </RelativeLayout>
+         <RelativeLayout
+             android:id="@+id/community_rl"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:gravity="center|bottom">
 
-    </LinearLayout>
+             <Button
+                 android:id="@+id/myCommunity_btn"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:background="@mipmap/bot_bar"
+                 android:drawableTop="@drawable/tab_dish_selector"
+                 android:gravity="center"
+                 android:paddingTop="5dp"
+                 android:text="@string/community"
+                 android:textColor="@color/white"
+                 android:textSize="10sp" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_alignParentTop="true"
+                 android:layout_marginRight="25dip"
+                 android:layout_marginTop="5dip"
+                 android:background="@drawable/tab_notification_selector"
+                 android:gravity="center"
+                 android:textColor="@color/white"
+                 android:textSize="12sp"
+                 android:visibility="gone" />
+         </RelativeLayout>
+
+         <RelativeLayout
+             android:id="@+id/search_rl"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:gravity="center|bottom"
+             android:visibility="visible">
+
+             <Button
+                 android:id="@+id/search_btn"
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentTop="true"
+                 android:background="@mipmap/bot_bar"
+                 android:drawableTop="@drawable/tab_notification_selector"
+                 android:gravity="center"
+                 android:paddingTop="5dp"
+                 android:text="@string/search"
+                 android:textColor="@color/white"
+                 android:textSize="10sp" />
+
+             <TextView
+                 android:id="@+id/note_message_count_tv"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_alignParentTop="true"
+                 android:layout_marginRight="25dip"
+                 android:layout_marginTop="5dip"
+                 android:background="@mipmap/notification"
+                 android:gravity="center"
+                 android:textColor="@color/white"
+                 android:textSize="12sp"
+                 android:visibility="gone" />
+         </RelativeLayout>
+
+         <RelativeLayout
+             android:id="@+id/MySetting_rl"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:gravity="center|bottom">
+
+             <Button
+                 android:id="@+id/mySetting_btn"
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:background="@mipmap/bot_bar"
+                 android:drawableTop="@drawable/tab_setting_selector"
+                 android:gravity="center"
+                 android:paddingTop="5dp"
+                 android:text="@string/mySetting"
+                 android:textColor="@color/white"
+                 android:textSize="10sp" />
+         </RelativeLayout>-->
+
+     <!--</LinearLayout> -->
 
 </RelativeLayout>
