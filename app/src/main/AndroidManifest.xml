@@ -30,7 +30,8 @@
             android:label="@string/title_activity_person_space"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.SettingActivity" />
-        <activity android:name=".activities.Setting_detailActivity"></activity>
+        <activity android:name=".activities.Setting_detailActivity" />
+        <activity android:name=".activities.Add_recipeActivity"></activity>
     </application>
 
 </manifest>

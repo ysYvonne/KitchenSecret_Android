@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:background="#a9a7e0">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
@@ -133,7 +134,7 @@
 
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="end"
-        android:text="编辑"
+        android:text="设定"
         android:textColor="@android:color/background_light" />
 
     <android.support.design.widget.FloatingActionButton

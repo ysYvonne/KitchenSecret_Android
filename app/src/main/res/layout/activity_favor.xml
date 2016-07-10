@@ -11,14 +11,6 @@
         android:layout_height="50dp"
         android:background="@mipmap/title_nav_bar">
 
-        <Button
-            android:id="@+id/btn_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:background="@mipmap/back"/>
-
         <TextView
             style="@style/title_text_style"
             android:layout_width="wrap_content"
@@ -51,7 +43,7 @@
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="735dp">
 
         <ListView
             android:id="@+id/favorListView"

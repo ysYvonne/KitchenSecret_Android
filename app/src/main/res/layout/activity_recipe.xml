@@ -12,14 +12,6 @@
         android:layout_height="wrap_content"
         android:background="@mipmap/title_nav_bar" >
 
-        <Button
-            android:id="@+id/btn_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:background="@mipmap/back" />
-
         <TextView
             android:id="@+id/tv_dish_name"
             style="@style/title_text_style"
@@ -31,7 +23,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="625dp" >
 
         <LinearLayout
             android:id="@+id/dish_description_ll"

@@ -11,14 +11,6 @@
         android:layout_height="wrap_content"
         android:background="@mipmap/title_nav_bar">
 
-        <Button
-            android:id="@+id/btn_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:background="@mipmap/back" />
-
         <TextView
             style="@style/title_text_style"
             android:layout_width="wrap_content"
@@ -63,13 +55,6 @@
                     android:layout_height="wrap_content"
                     android:src="@mipmap/username" />
 
-                <!--<TextView
-                    android:id="@+id/tv_username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:background="@drawable/username"
-                    android:textSize="@dimen/text_big" />-->
 
                 <EditText
                     android:id="@+id/et_username"
