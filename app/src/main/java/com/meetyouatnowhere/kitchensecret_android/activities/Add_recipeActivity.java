@@ -3,6 +3,8 @@ package com.meetyouatnowhere.kitchensecret_android.activities;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.meetyouatnowhere.kitchensecret_android.R;
+
 public class Add_recipeActivity extends AppCompatActivity {
 
     @Override

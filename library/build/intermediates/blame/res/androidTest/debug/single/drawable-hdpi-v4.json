@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "F:\\KitchenSecret_Android\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\arrow.png",
+        "source": "F:\\KitchenSecret_Android\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\arrow.png"
+    },
+    {
+        "merged": "F:\\KitchenSecret_Android\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\updating_spinner.xml",
+        "source": "F:\\KitchenSecret_Android\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\updating_spinner.xml"
+    },
+    {
+        "merged": "F:\\KitchenSecret_Android\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ad_button_015_refresh_down_arrow.png",
+        "source": "F:\\KitchenSecret_Android\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ad_button_015_refresh_down_arrow.png"
+    },
+    {
+        "merged": "F:\\KitchenSecret_Android\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\updating.png",
+        "source": "F:\\KitchenSecret_Android\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\updating.png"
+    }
+]
