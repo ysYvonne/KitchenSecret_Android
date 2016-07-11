@@ -8,9 +8,11 @@ package com.meetyouatnowhere.kitchensecret_android.activities.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
@@ -19,6 +21,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.meetyouatnowhere.kitchensecret_android.R;
+import com.meetyouatnowhere.kitchensecret_android.activities.bannerview.CircleFlowIndicator;
+import com.meetyouatnowhere.kitchensecret_android.activities.bannerview.ImagePagerAdapter;
+import com.meetyouatnowhere.kitchensecret_android.activities.bannerview.ViewFlow;
+
+import java.util.ArrayList;
 
 public class XListViewHeader extends LinearLayout {
 	private LinearLayout mContainer;
@@ -36,6 +43,11 @@ public class XListViewHeader extends LinearLayout {
 	public final static int STATE_READY = 1;
 	public final static int STATE_REFRESHING = 2;
 
+	private ViewFlow mViewFlow;
+	private CircleFlowIndicator mFlowIndicator;
+	private ArrayList<String> imageUrlList = new ArrayList<String>();
+	ArrayList<String> linkUrlArray= new ArrayList<String>();
+	ArrayList<String> titleList= new ArrayList<String>();
 	public XListViewHeader(Context context) {
 		super(context);
 		initView(context);
@@ -53,11 +65,22 @@ public class XListViewHeader extends LinearLayout {
 	private void initView(Context context) {
 		// 初始情况，设置下拉刷新view高度为0
 		LayoutParams lp = new LayoutParams(
-				LayoutParams.FILL_PARENT, 0);
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		mContainer = (LinearLayout) LayoutInflater.from(context).inflate(
 				R.layout.xlistview_header, null);
 		addView(mContainer, lp);
 		setGravity(Gravity.BOTTOM);
+		mViewFlow = (ViewFlow) findViewById(R.id.view_flow);
+		mFlowIndicator = (CircleFlowIndicator)findViewById(R.id.viewCircle_flow);
+		imageUrlList
+				.add("http://photocdn.sohu.com/20150422/mp11846883_1429673028490_2.jpeg");
+		imageUrlList
+				.add("http://photocdn.sohu.com/20150422/mp11846883_1429673028490_8.jpeg");
+		imageUrlList
+				.add("http://photocdn.sohu.com/20150422/mp11846883_1429673028490_12.jpeg");
+		imageUrlList
+				.add("http://photocdn.sohu.com/20150422/mp11846883_1429673028490_15.jpeg");
+		initBanner(imageUrlList);
 
 		mArrowImageView = (ImageView)findViewById(R.id.xlistview_header_arrow);
 		mHintTextView = (TextView)findViewById(R.id.xlistview_header_hint_textview);
@@ -73,6 +96,20 @@ public class XListViewHeader extends LinearLayout {
 				0.5f);
 		mRotateDownAnim.setDuration(ROTATE_ANIM_DURATION);
 		mRotateDownAnim.setFillAfter(true);
+	}
+
+	private void initBanner(ArrayList<String> imageUrlList) {
+
+		mViewFlow.setAdapter(new ImagePagerAdapter(getContext(), imageUrlList,
+				linkUrlArray, titleList).setInfiniteLoop(true));
+		Log.i("TAG",imageUrlList.size()+"  ");
+		mViewFlow.setmSideBuffer(imageUrlList.size()); // 实际图片张数，
+		// 我的ImageAdapter实际图片张数为3
+
+		mViewFlow.setFlowIndicator(mFlowIndicator);
+		mViewFlow.setTimeSpan(4500);
+		mViewFlow.setSelection(imageUrlList.size() * 1000); // 设置初始位置
+		mViewFlow.startAutoFlowTimer(); // 启动自动播放
 	}
 
 	public void setState(int state) {

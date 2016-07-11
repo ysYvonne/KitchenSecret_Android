@@ -49,6 +49,7 @@ public class ImagePagerAdapter extends BaseAdapter {
 		this.urlTitlesList = urlTitlesList;
 		isInfiniteLoop = false;
 		// 初始化imageLoader 否则会报错
+		if(imageLoader!=null)imageLoader.destroy();
 		imageLoader = ImageLoader.getInstance();
 		imageLoader.init(ImageLoaderConfiguration.createDefault(context));
 		options = new DisplayImageOptions.Builder()

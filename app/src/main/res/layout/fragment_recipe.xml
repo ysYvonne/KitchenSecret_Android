@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context="com.meetyouatnowhere.kitchensecret_android.activities.RecipeFragment">
 
     <!-- TODO: Update blank fragment layout
@@ -42,52 +43,13 @@
             android:layout_alignParentEnd="true" />
 
     </RelativeLayout>-->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:layout_gravity="left|top"
-        android:layout_alignParentStart="true"
-        android:id="@+id/relativeLayout">
 
-        <com.meetyouatnowhere.kitchensecret_android.activities.bannerview.ViewFlow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/view_flow"
-            android:layout_gravity="left|top"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true" />
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="47dp"
-            android:id="@+id/relativeLayout2"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true">
-
-        </RelativeLayout>
-
-        <com.meetyouatnowhere.kitchensecret_android.activities.bannerview.CircleFlowIndicator
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/viewCircle_flow"
-        android:layout_gravity="center_horizontal|bottom"
-            android:gravity="center"
-        android:padding="3dip"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
-
-
-    </RelativeLayout>
 
     <com.meetyouatnowhere.kitchensecret_android.activities.view.XListView
         android:id="@+id/list"
         android:scrollbars="vertical"
         android:fastScrollEnabled="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/relativeLayout"/>
+        android:layout_height="match_parent" />
 </RelativeLayout>
 

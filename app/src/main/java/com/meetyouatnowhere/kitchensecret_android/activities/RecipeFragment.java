@@ -48,11 +48,6 @@ public class RecipeFragment extends Fragment implements XListView.IXListViewList
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private ViewFlow mViewFlow;
-    private CircleFlowIndicator mFlowIndicator;
-    private ArrayList<String> imageUrlList = new ArrayList<String>();
-    ArrayList<String> linkUrlArray= new ArrayList<String>();
-    ArrayList<String> titleList= new ArrayList<String>();
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -257,17 +252,9 @@ private class ContentTask extends AsyncTask<String, Integer, List<DuitangInfo>> 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_recipe, container, false);
-        initView(view);
+//        initView(view);
         // Inflate the layout for this fragment
-        imageUrlList
-                .add("http://photocdn.sohu.com/20150422/mp11846883_1429673028490_2.jpeg");
-        imageUrlList
-                .add("http://photocdn.sohu.com/20150422/mp11846883_1429673028490_8.jpeg");
-        imageUrlList
-                .add("http://photocdn.sohu.com/20150422/mp11846883_1429673028490_12.jpeg");
-        imageUrlList
-                .add("http://photocdn.sohu.com/20150422/mp11846883_1429673028490_15.jpeg");
-        initBanner(imageUrlList);
+
 
         mAdapterView = (XListView)view.findViewById(R.id.list);
         mAdapterView.setPullLoadEnable(true);
@@ -280,24 +267,13 @@ private class ContentTask extends AsyncTask<String, Integer, List<DuitangInfo>> 
         return view;
     }
 
-    private void initView(View view) {
-        mViewFlow = (ViewFlow) view.findViewById(R.id.view_flow);
-        mFlowIndicator = (CircleFlowIndicator)view.findViewById(R.id.viewCircle_flow);
+//    private void initView(View view) {
+//        mViewFlow = (ViewFlow) view.findViewById(R.id.view_flow);
+//        mFlowIndicator = (CircleFlowIndicator)view.findViewById(R.id.viewCircle_flow);
+//
+//    }
 
-    }
 
-    private void initBanner(ArrayList<String> imageUrlList) {
-
-        mViewFlow.setAdapter(new ImagePagerAdapter(getContext(), imageUrlList,
-                linkUrlArray, titleList).setInfiniteLoop(true));
-        mViewFlow.setmSideBuffer(imageUrlList.size()); // 实际图片张数，
-        // 我的ImageAdapter实际图片张数为3
-
-        mViewFlow.setFlowIndicator(mFlowIndicator);
-        mViewFlow.setTimeSpan(4500);
-        mViewFlow.setSelection(imageUrlList.size() * 1000); // 设置初始位置
-        mViewFlow.startAutoFlowTimer(); // 启动自动播放
-    }
 //    // TODO: Rename method, update argument and hook method into UI event
 //    public void onButtonPressed(Uri uri) {
 //        if (mListener != null) {

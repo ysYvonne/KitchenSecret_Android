@@ -10,6 +10,7 @@ package com.meetyouatnowhere.kitchensecret_android.activities.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
@@ -98,13 +99,13 @@ public class XListView extends MultiColumnListView implements PLA_AbsListView.On
 		mFooterView = new XListViewFooter(context);
 
 		// init header height
-		mHeaderView.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-			@Override
-			public void onGlobalLayout() {
-				mHeaderViewHeight = mHeaderViewContent.getHeight();
-				getViewTreeObserver().removeGlobalOnLayoutListener(this);
-			}
-		});
+//		mHeaderView.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+//			@Override
+//			public void onGlobalLayout() {
+//				mHeaderViewHeight = mHeaderViewContent.getHeight();
+//				getViewTreeObserver().removeGlobalOnLayoutListener(this);
+//			}
+//		});
 	}
 
 	@Override
@@ -220,6 +221,9 @@ public class XListView extends MultiColumnListView implements PLA_AbsListView.On
 			finalHeight = mHeaderViewHeight;
 		}
 		mScrollBack = SCROLLBACK_HEADER;
+		finalHeight=1100;
+		Integer d=finalHeight - height;
+//		Log.i("TAG",finalHeight+"/"+height+"/"+d.toString());
 		mScroller.startScroll(0, height, 0, finalHeight - height, SCROLL_DURATION);
 		// trigger computeScroll
 		invalidate();
