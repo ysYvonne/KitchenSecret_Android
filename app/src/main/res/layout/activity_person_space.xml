@@ -128,7 +128,7 @@
     <include layout="@layout/content_person_space" />
 
     <Button
-        android:id="@+id/fab"
+        android:id="@+id/setting_fab"
         android:layout_width="80dp"
         android:layout_height="50dp"
 

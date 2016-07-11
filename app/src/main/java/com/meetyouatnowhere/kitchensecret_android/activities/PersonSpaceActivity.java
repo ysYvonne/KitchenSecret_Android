@@ -11,6 +11,8 @@ import com.meetyouatnowhere.kitchensecret_android.R;
 
 public class PersonSpaceActivity extends AppCompatActivity {
 
+    private int request = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +20,8 @@ public class PersonSpaceActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.setting_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -26,5 +29,8 @@ public class PersonSpaceActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        */
     }
+
+
 }
