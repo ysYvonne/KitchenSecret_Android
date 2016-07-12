@@ -1,2 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\libs\jackson-annotations-2.2.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="3539928f64ce8c37340a012e974990ba1478109a">
+        <dex dex="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\build\intermediates\transforms\dex\debug\folders\1000\2\jackson-annotations-2.2.0_4bb0240d9630837d94eb4094be4f8b56d0ae8843\classes.dex" />
+    </item>
+    <item
+        jar="D:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.0.1_9792d51791d92eddc0d9758885c1364396bdbf7e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\build\intermediates\exploded-aar\com.android.support\design\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.0.1_cc31b4f5a144447bbbc2e8254e2a57c6ffdb1f09\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\libs\jackson-databind-2.2.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="17ec233d1bc729a63ba58ed38e080d0c3b74a85f">
+        <dex dex="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\build\intermediates\transforms\dex\debug\folders\1000\2\jackson-databind-2.2.0_a6eb97bdfdb06ea7cdb6f5de2f00f01b65873acf\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.0.1_659d250da49997aa00e8297b6aa73dcb24b9c99b\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="f6f1e46c246e64e57bd901ddbbc50e9cf4c6ff2b">
+        <dex dex="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_ae6dd55f677794a99cc15a159bbbc74fb3c6065c\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="9fb98016317d9cb70363bffaedbbb8390ed310fe">
+        <dex dex="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_a098bb3166165603966cfb39a5185d329a371a09\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\libs\android-async-http-1.4.6.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="a845a88238be0b5be9d238652c1bc0605ef91f52">
+        <dex dex="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\build\intermediates\transforms\dex\debug\folders\1000\2\android-async-http-1.4.6_15915b94f269259e93fde3ced760829277e77223\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.0.1_e974f9d3bd0a2525c8a135e41e6fe587353d090f\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\libs\jackson-core-2.2.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="8ce8a32b1b23f7f64b3f59a3d2084b09fdc2396b">
+        <dex dex="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\build\intermediates\transforms\dex\debug\folders\1000\2\jackson-core-2.2.0_f2c631870ec64c61b087ea5bac7c58e63e3be3ed\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="C:\Users\heyi\Desktop\KitchenSecret_Android\mykitchen\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.0.1_c545d04d771905f30890ac946a2211387107e16b\classes.dex" />
+    </item>
+
+</items>
