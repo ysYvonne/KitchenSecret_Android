@@ -28,7 +28,7 @@ import org.json.JSONArray;
 import java.util.List;
 
 /**
- * Created by ping on 2014/12/22.
+ * Created by ping on 2016/7/12.
  */
 public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
 

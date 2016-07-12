@@ -169,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.login_settings){
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, request);
+            return true;
         }
 
         //noinspection SimplifiableIfStatement
@@ -176,6 +177,10 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SettingActivity.class);
             startActivityForResult(intent, request);
             return true;
+        }
+
+        if (id == R.id.exit_settings){
+            return  true;
         }
 
         return super.onOptionsItemSelected(item);

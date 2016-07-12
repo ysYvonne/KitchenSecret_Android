@@ -35,7 +35,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:nestedScrollingEnabled="true">
 
             <RelativeLayout
                 android:id="@+id/dish_description_ll"
@@ -133,7 +134,7 @@
 
                     <EditText
                         android:layout_width="fill_parent"
-                        android:layout_height="83dp"
+                        android:layout_height="53dp"
                         android:background="@null"
                         android:ems="10"
                         android:focusableInTouchMode="true"
@@ -164,7 +165,7 @@
 
                     <EditText
                         android:layout_width="fill_parent"
-                        android:layout_height="151dp"
+                        android:layout_height="65dp"
                         android:background="@null"
                         android:ems="10"
                         android:focusableInTouchMode="true"

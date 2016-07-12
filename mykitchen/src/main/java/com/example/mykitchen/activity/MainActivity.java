@@ -20,11 +20,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             finish();
         }
+
         setContentView(R.layout.activity_main);
         TextView nick=(TextView)findViewById(R.id.nickname);
         TextView email=(TextView)findViewById(R.id.email);
         TextView intro=(TextView)findViewById(R.id.intro);
         Button btn=(Button)findViewById(R.id.button);
+
         nick.setText(MyApplication.getInstance().getUserBean().getNickname());
         email.setText(MyApplication.getInstance().getUserBean().getEmail());
         intro.setText(MyApplication.getInstance().getUserBean().getIntro());
