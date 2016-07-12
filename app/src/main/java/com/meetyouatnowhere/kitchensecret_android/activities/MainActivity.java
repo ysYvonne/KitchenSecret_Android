@@ -3,14 +3,11 @@ package com.meetyouatnowhere.kitchensecret_android.activities;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
@@ -18,9 +15,6 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTabHost mTabHost;
     private ViewPager mViewPager;
     private List<Fragment> mFragmentList;
-    private Class mClass[] = {RecipeFragment.class,CommunityFragment.class,SearchFragment.class,MySettingFragment.class};
-    private Fragment mFragment[] = {new RecipeFragment(),new CommunityFragment(),new SearchFragment(),new MySettingFragment()};
+    private Class mClass[] = {RecipeFragment.class,CommunityFragment.class,SearchFragment.class,PersonSpaceFragment.class};
+    private Fragment mFragment[] = {new RecipeFragment(),new CommunityFragment(),new SearchFragment(),new PersonSpaceFragment()};
     private String mTitles[] = {"食谱","社区","搜搜","我的"};
     private int mImages[] = {
             R.drawable.tab_home,
@@ -175,6 +169,12 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Intent intent = new Intent(this, SettingActivity.class);
+            startActivityForResult(intent, request);
+            return true;
+        }
+
+        if (id == R.id.add_settings){
+            Intent intent = new Intent(this, Add_recipeActivity.class);
             startActivityForResult(intent, request);
             return true;
         }

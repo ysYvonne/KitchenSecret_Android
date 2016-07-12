@@ -17,6 +17,12 @@
             app:showAsAction="never" />
 
         <item
+            android:id="@+id/add_settings"
+            android:orderInCategory="100"
+            android:title="添加食谱"
+            app:showAsAction="never" />
+
+        <item
             android:id="@+id/exit_settings"
             android:orderInCategory="100"
             android:title="退出"

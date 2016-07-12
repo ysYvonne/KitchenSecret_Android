@@ -11,90 +11,104 @@
     <!-- TODO: Update blank fragment layout -->
 
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="748dp"
-        android:nestedScrollingEnabled="true">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="vertical"
+        android:fadingEdge="vertical"
+        android:id="@+id/scrollView"
+        android:visibility="visible"
+        android:touchscreenBlocksFocus="true">
 
-        <SearchView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/searchView"
-            android:background="@android:drawable/editbox_background" />
+            android:nestedScrollingEnabled="true"
+            android:scrollbars="vertical"
+            android:weightSum="1">
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="191dp"
-            android:id="@+id/history_lView" />
+            <SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/searchView"
+                android:background="@android:drawable/editbox_background" />
 
-        <TextView
-            android:id="@+id/maylike_text"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="9dp"
-            android:text="可能喜欢"
-            android:textColor="#1a1919"
-            android:textSize="@dimen/text_large"/>
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="191dp"
+                android:id="@+id/history_lView" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <Button
-                android:id="@+id/maylike3_btn"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp"
+            <TextView
+                android:id="@+id/maylike_text"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="9dp"
-                android:background="@color/design_fab_shadow_mid_color"
-                android:text="鸡肉" />
+                android:layout_marginTop="9dp"
+                android:text="可能喜欢"
+                android:textColor="#1a1919"
+                android:textSize="@dimen/text_large"/>
 
-            <Button
-                android:id="@+id/maylike4_btn"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="9dp"
-                android:background="@color/design_fab_shadow_mid_color"
-                android:text="沙拉" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="195dp">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="7.17">
 
 
-            <Button
-                android:id="@+id/maylike1_btn"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="0dp"
-                android:layout_marginStart="9dp"
-                android:background="@color/design_fab_shadow_mid_color"
-                android:text="低卡路里" />
+                <Button
+                    android:id="@+id/maylike3_btn"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="9dp"
+                    android:background="@color/design_fab_shadow_mid_color"
+                    android:text="鸡肉" />
 
-            <Button
-                android:id="@+id/maylike2_btn"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="0dp"
-                android:layout_marginStart="9dp"
-                android:background="@color/design_fab_shadow_mid_color"
-                android:text="快手菜" />
+                <Button
+                    android:id="@+id/maylike4_btn"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="9dp"
+                    android:background="@color/design_fab_shadow_mid_color"
+                    android:text="沙拉" />
 
-        </TableRow>
-    </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4.78">
+
+
+                <Button
+                    android:id="@+id/maylike1_btn"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginStart="9dp"
+                    android:background="@color/design_fab_shadow_mid_color"
+                    android:text="低卡路里" />
+
+                <Button
+                    android:id="@+id/maylike2_btn"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginStart="9dp"
+                    android:background="@color/design_fab_shadow_mid_color"
+                    android:text="快手菜" />
+
+            </TableRow>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
