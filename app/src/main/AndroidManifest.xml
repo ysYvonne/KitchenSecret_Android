@@ -21,18 +21,16 @@
         </activity>
         <activity android:name=".activities.pulldown.PullToRefreshSampleActivity"/>
         <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.registerActivity" />
+        <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.favorActivity" />
         <activity android:name=".activities.RecipeActivity" />
-        <activity android:name=".activities.SortActivity" />
         <activity android:name=".activities.EditPersonalInfoActivity" />
-        <activity
-            android:name=".activities.PersonSpaceActivity"
-            android:label="@string/title_activity_person_space"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.SettingActivity" />
-        <activity android:name=".activities.Setting_detailActivity" />
-        <activity android:name=".activities.Add_recipeActivity"></activity>
+        <activity android:name=".activities.Setting_detailActivity" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

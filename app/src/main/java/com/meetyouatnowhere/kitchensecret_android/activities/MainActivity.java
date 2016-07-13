@@ -26,12 +26,13 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTabHost mTabHost;
     private ViewPager mViewPager;
     private List<Fragment> mFragmentList;
-    private Class mClass[] = {RecipeFragment.class,CommunityFragment.class,SearchFragment.class,PersonSpaceFragment.class};
-    private Fragment mFragment[] = {new RecipeFragment(),new CommunityFragment(),new SearchFragment(),new PersonSpaceFragment()};
-    private String mTitles[] = {"食谱","社区","搜搜","我的"};
+    private Class mClass[] = {RecipeFragment.class,SortFragment.class,AddRecipeFragment.class,SearchFragment.class,PersonSpaceFragment.class};
+    private Fragment mFragment[] = {new RecipeFragment(),new SortFragment(),new AddRecipeFragment(),new SearchFragment(),new PersonSpaceFragment()};
+    private String mTitles[] = {"食谱","筛选","","搜搜","我的"};
     private int mImages[] = {
             R.drawable.tab_home,
             R.drawable.tab_report,
+            R.mipmap.add_btn,
             R.drawable.tab_message,
             R.drawable.tab_mine
     };
@@ -84,11 +85,11 @@ public class MainActivity extends AppCompatActivity {
         mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
         mTabHost.getTabWidget().setDividerDrawable(null);
 
-        for (int i = 0;i < mFragment.length;i++){
-            TabHost.TabSpec tabSpec = mTabHost.newTabSpec(mTitles[i]).setIndicator(getTabView(i));
-            mTabHost.addTab(tabSpec,mClass[i],null);
-            mFragmentList.add(mFragment[i]);
-            mTabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.WHITE);
+        for (int i = 0;i < mClass.length;i++){
+                TabHost.TabSpec tabSpec = mTabHost.newTabSpec(mTitles[i]).setIndicator(getTabView(i));
+                mTabHost.addTab(tabSpec,mClass[i],null);
+                mFragmentList.add(mFragment[i]);
+                mTabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.WHITE);
         }
 
         mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
@@ -164,22 +165,15 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, request);
             return true;
-        }
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        }else if(id == R.id.sign_settings) {
+            Intent intent = new Intent(this, RegisterActivity.class);
+            startActivityForResult(intent, request);
+            return true;
+        }else if (id == R.id.action_settings) {
             Intent intent = new Intent(this, SettingActivity.class);
             startActivityForResult(intent, request);
             return true;
-        }
-
-        if (id == R.id.add_settings){
-            Intent intent = new Intent(this, Add_recipeActivity.class);
-            startActivityForResult(intent, request);
-            return true;
-        }
-
-        if (id == R.id.exit_settings){
+        }else if (id == R.id.exit_settings){
             return  true;
         }
 

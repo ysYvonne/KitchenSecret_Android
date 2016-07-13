@@ -2,95 +2,123 @@
 <items version="2" >
 
     <item
-        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/libs/internal_impl-23.1.0.jar"
+        jar="F:\KitchenSecret_Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
         jumboMode="true"
         revision="23.0.1"
-        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
-        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.1.0_d60e08211b280b35de17057e3c0050e2209a01a0/classes.dex" />
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="F:\KitchenSecret_Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.4.0_e7c5bda630169be9586fa21988135031af2457c9.jar" />
     </item>
     <item
-        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="F:\KitchenSecret_Android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
         jumboMode="true"
         revision="23.0.1"
-        sha1="bf1b14ba1ea394f0070e12cc497c8a19b02c87ba">
-        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_386a39c414e1dbbdf5b5f42108e2d57733b2ed95/classes.dex" />
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="F:\KitchenSecret_Android\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.4.0_9d2b0a0edf3094e9dbf1ee5a19fb4ed92e18430d.jar" />
     </item>
     <item
-        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/libs/jackson-annotations-2.2.0.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="3539928f64ce8c37340a012e974990ba1478109a">
-        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/2/jackson-annotations-2.2.0_8c3c3b325f6b0015eeff323fb9f5a6b5929e10bd/classes.dex" />
-    </item>
-    <item
-        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/libs/jackson-core-2.2.0.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="8ce8a32b1b23f7f64b3f59a3d2084b09fdc2396b">
-        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/2/jackson-core-2.2.0_e956b4bd3e02aa9ac0418696be55176c38b2f6f1/classes.dex" />
-    </item>
-    <item
-        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
-        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.1.0_c055a684553c4c87144670e48068644ec229b00a/classes.dex" />
-    </item>
-    <item
-        jar="/Users/yisheng/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
-        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.1.0_9a16adbadd3ce94199c6608314388141c0e14b19/classes.dex" />
-    </item>
-    <item
-        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
-        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.1.0_35a59c390e5f07c745ce0c8a7d733de29c42a658/classes.dex" />
-    </item>
-    <item
-        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="3f151e49c316a5ab2c065969a3b3b55ef9b393fc">
-        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.1.0_85dce39fb07ba136065438f68771813565b04286/classes.dex" />
-    </item>
-    <item
-        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="7b747165181d492c3abf5e526b4c542d988707e9">
-        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_625fceeed26902cedb0f1976fe3b71f139ae6e7a/classes.dex" />
-    </item>
-    <item
-        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/libs/android-async-http-1.4.6.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="a845a88238be0b5be9d238652c1bc0605ef91f52">
-        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/2/android-async-http-1.4.6_37130a19f2518c96b2239dedaa767fe8fde972f4/classes.dex" />
-    </item>
-    <item
-        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/libs/jackson-databind-2.2.0.jar"
+        jar="F:\KitchenSecret_Android\app\libs\jackson-databind-2.2.0.jar"
         jumboMode="true"
         revision="23.0.1"
         sha1="17ec233d1bc729a63ba58ed38e080d0c3b74a85f">
-        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/2/jackson-databind-2.2.0_9db7eaac0cfa1adf5bae1fc6773b64cb1ec7d6fa/classes.dex" />
+        <dex dex="F:\KitchenSecret_Android\app\build\intermediates\pre-dexed\debug\jackson-databind-2.2.0_eea535a8f8c1a52c7d29535d292403912e0f6747.jar" />
     </item>
     <item
-        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/exploded-aar/com.android.support/design/23.1.0/jars/classes.jar"
+        jar="F:\KitchenSecret_Android\app\build\intermediates\exploded-aar\com.android.support\design\23.4.0\jars\classes.jar"
         jumboMode="true"
         revision="23.0.1"
-        sha1="19026d31f5d3ae868db81319671a642be5fbba08">
-        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.1.0_f87722110fdc7010eab1acedf1692350a5f54fe0/classes.dex" />
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="F:\KitchenSecret_Android\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.4.0_6733e2ededc50df6fb6519c9ac3dc755cd57fcf6.jar" />
     </item>
     <item
-        jar="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/libs/universal-image-loader-1.9.3.jar"
+        jar="F:\KitchenSecret_Android\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="F:\KitchenSecret_Android\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.4.0_b956ca631b7ee57ff12f6ff055b94a6fc5342230.jar" />
+    </item>
+    <item
+        jar="F:\KitchenSecret_Android\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="F:\KitchenSecret_Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.4.0_ef1580b5f50b4cd56bf51336449bb007f3ad490c.jar" />
+    </item>
+    <item
+        jar="F:\KitchenSecret_Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
+        <dex dex="F:\KitchenSecret_Android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appindexing-8.1.0_1208b4bcdea6847804b2713ecc01b9b05bb510a1.jar" />
+    </item>
+    <item
+        jar="F:\KitchenSecret_Android\app\libs\universal-image-loader-1.9.3.jar"
         jumboMode="true"
         revision="23.0.1"
         sha1="a85588bec3e2c4584d593d3f15df1677321bca72">
-        <dex dex="/Users/yisheng/Documents/YS/UNIVERSITY/engineering/coding/KitchenSecret_Android/app/build/intermediates/transforms/dex/debug/folders/1000/2/universal-image-loader-1.9.3_206e5685f4957f55808dc3482d1dc0e7f03355d0/classes.dex" />
+        <dex dex="F:\KitchenSecret_Android\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.3_bcd545a9cd9b035f5dac9391cd9d762e90e01805.jar" />
+    </item>
+    <item
+        jar="F:\KitchenSecret_Android\app\libs\jackson-core-2.2.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="8ce8a32b1b23f7f64b3f59a3d2084b09fdc2396b">
+        <dex dex="F:\KitchenSecret_Android\app\build\intermediates\pre-dexed\debug\jackson-core-2.2.0_d8b9e65d474cade7dafd2650637f84b7d4b48361.jar" />
+    </item>
+    <item
+        jar="F:\KitchenSecret_Android\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="d096e4f373e6161493bb9e9c5e23bff9977754f4">
+        <dex dex="F:\KitchenSecret_Android\app\build\intermediates\pre-dexed\debug\instant-run_996bcf8094c538291c2a7317e283f6f8ab2a8f5f.jar" />
+    </item>
+    <item
+        jar="F:\KitchenSecret_Android\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="db129112af5df9d8118c7dcfa969f2893d92d889">
+        <dex dex="F:\KitchenSecret_Android\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_2b77c639cfca13177b9058bb1f2e456a73255171.jar" />
+    </item>
+    <item
+        jar="F:\KitchenSecret_Android\app\libs\android-async-http-1.4.6.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="a845a88238be0b5be9d238652c1bc0605ef91f52">
+        <dex dex="F:\KitchenSecret_Android\app\build\intermediates\pre-dexed\debug\android-async-http-1.4.6_bd43647725b53c822aed4819254d460a4acfdbcb.jar" />
+    </item>
+    <item
+        jar="F:\KitchenSecret_Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="F:\KitchenSecret_Android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-8.1.0_d68466a9cd3247c670fd9c915f3bf3dc36f10e8f.jar" />
+    </item>
+    <item
+        jar="C:\Users\dell\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="F:\KitchenSecret_Android\app\build\intermediates\pre-dexed\debug\support-annotations-23.4.0_83c9c0b1c9cc8e95765a134131a6a39c7cda1b74.jar" />
+    </item>
+    <item
+        jar="F:\KitchenSecret_Android\app\libs\jackson-annotations-2.2.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="3539928f64ce8c37340a012e974990ba1478109a">
+        <dex dex="F:\KitchenSecret_Android\app\build\intermediates\pre-dexed\debug\jackson-annotations-2.2.0_ee25cba9d3b7435f3bd09fbc3a3c10ef633077db.jar" />
+    </item>
+    <item
+        jar="F:\KitchenSecret_Android\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="F:\KitchenSecret_Android\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.4.0_39b0f7691b0ff83a86d3ee72cf5df5e05234e8c2.jar" />
+    </item>
+    <item
+        jar="F:\KitchenSecret_Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="F:\KitchenSecret_Android\app\build\intermediates\pre-dexed\debug\internal_impl-23.4.0_b3f911896507737793fdefbbd49422d0e0f51ff6.jar" />
     </item>
 
 </items>

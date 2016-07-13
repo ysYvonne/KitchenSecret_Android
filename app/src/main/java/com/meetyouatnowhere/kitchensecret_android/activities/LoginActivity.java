@@ -66,6 +66,13 @@ public class LoginActivity extends Activity {
         }
     }
 
+    public void setUserNameAndPassWord(String username, String password){
+        this.username = username;
+        this.password = password;
+
+        login();
+    }
+
 
     public void checkLogin() {
         username = username_et.getText().toString().trim();

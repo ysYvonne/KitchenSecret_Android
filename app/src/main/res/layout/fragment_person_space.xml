@@ -8,6 +8,7 @@
     tools:context=".activities.PersonSpaceFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
@@ -53,17 +54,15 @@
                         android:layout_width="140dp"
                         android:layout_height="140dp"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="7dp"
                         android:background="@mipmap/default_avatar" />
 
                     <RelativeLayout
                         android:id="@+id/user_info_rl"
-                        android:layout_width="fill_parent"
-                        android:layout_height="153dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_gravity="center_vertical">
+                        android:layout_width="146dp"
+                        android:layout_height="173dp"
+                        android:layout_marginTop="10dp">
 
                         <TextView
                             android:id="@+id/name_tv"
@@ -120,33 +119,39 @@
 
                     </RelativeLayout>
 
+                    <RelativeLayout
+                        android:layout_width="56dp"
+                        android:layout_height="match_parent">
+
+                        <Button
+                            android:id="@+id/setting_fab"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+
+                            app:layout_anchor="@id/app_bar"
+                            app:layout_anchorGravity="end"
+
+                            android:gravity="top|end|right"
+                            android:background="@mipmap/setting"
+                            android:layout_alignParentEnd="true" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/star"
+                            android:id="@+id/favor_btn"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentStart="true" />
+                    </RelativeLayout>
+
                 </LinearLayout>
+
             </LinearLayout>
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_person_space" />
-
-    <Button
-        android:id="@+id/setting_fab"
-        android:layout_width="80dp"
-        android:layout_height="50dp"
-
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="end"
-        android:text="设定"
-        android:textColor="@android:color/background_light" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/favor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/abc_btn_rating_star_off_mtrl_alpha"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end">
-    </android.support.design.widget.FloatingActionButton>
 
 
 </LinearLayout>

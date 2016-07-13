@@ -63,7 +63,7 @@
                         android:src="@android:drawable/ic_dialog_email"/>
 
                     <EditText
-                        android:id="@+id/et_email"
+                        android:id="@+id/sign_et_email"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
@@ -92,7 +92,7 @@
                         android:src="@mipmap/username"/>
 
                     <EditText
-                        android:id="@+id/et_username"
+                        android:id="@+id/sign_et_username"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
@@ -119,7 +119,7 @@
                         android:src="@mipmap/password"/>
 
                     <EditText
-                        android:id="@+id/et_password"
+                        android:id="@+id/sign_et_password"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:background="@null"
@@ -148,7 +148,7 @@
                         android:src="@mipmap/password"/>
 
                     <EditText
-                        android:id="@+id/et_password_check"
+                        android:id="@+id/sign_et_password_check"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
@@ -164,7 +164,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btn_favor"
+                    android:id="@+id/btn_sign"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
