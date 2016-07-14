@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
     android:orientation="vertical"
-    android:baselineAligned="true">
+    tools:context=".activities.SortFragment">
 
+    <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,13 +22,15 @@
 
         <Button
             android:id="@+id/okay_btn"
-            style="@style/title_text_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/complete"
-            android:layout_marginLeft="320dp"
             android:layout_centerVertical="true"
-            android:background="@drawable/abc_list_selector_background_transition_holo_light" />
+            android:text="@string/complete"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentTop="true"
+            style="@style/title_text_style"
+            android:background="#a7a4e0"/>
     </RelativeLayout>
 
     <ScrollView
@@ -69,7 +72,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="40dp"
-                    android:layout_marginStart="45dp"
+                    android:layout_marginStart="20dp"
                     android:background="@mipmap/entree"
                     />
 
@@ -107,7 +110,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="130dp"
-                    android:layout_marginStart="45dp"
+                    android:layout_marginStart="20dp"
                     android:background="@mipmap/sneak" />
 
                 <ImageButton
@@ -154,7 +157,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="250dp"
-                    android:layout_marginStart="45dp"
+                    android:layout_marginStart="20dp"
                     android:background="@mipmap/difficult" />
 
                 <ImageButton
@@ -201,7 +204,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="380dp"
-                    android:layout_marginStart="45dp"
+                    android:layout_marginStart="20dp"
                     android:background="@mipmap/vegetarian" />
 
                 <ImageButton
@@ -239,7 +242,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="470dp"
-                    android:layout_marginStart="45dp"
+                    android:layout_marginStart="20dp"
                     android:background="@mipmap/spicy" />
 
                 <ImageButton
@@ -267,5 +270,6 @@
 
         </RelativeLayout>
     </ScrollView>
+
 
 </LinearLayout>

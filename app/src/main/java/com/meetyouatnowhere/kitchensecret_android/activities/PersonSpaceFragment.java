@@ -1,17 +1,23 @@
 package com.meetyouatnowhere.kitchensecret_android.activities;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.meetyouatnowhere.kitchensecret_android.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link PersonSpaceFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link PersonSpaceFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -25,6 +31,12 @@ public class PersonSpaceFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ImageButton myRecipe1_btn;
+    private ImageButton myRecipe2_btn;
+    private ImageButton myRecipe3_btn;
+    private ImageButton add_recipe_btn;
+
 
 //    private OnFragmentInteractionListener mListener;
 
@@ -63,8 +75,50 @@ public class PersonSpaceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_person_space, null);
+        myRecipe1_btn = (ImageButton)view.findViewById(R.id.myRecipe1_btn);
+        myRecipe2_btn = (ImageButton)view.findViewById(R.id.myRecipe2_btn);
+        myRecipe3_btn = (ImageButton)view.findViewById(R.id.myRecipe3_btn);
+        add_recipe_btn = (ImageButton)view.findViewById(R.id.add_recipe_btn);
+
+        myRecipe1_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getActivity(), "!!!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(),RecipeActivity.class);
+                startActivityForResult(intent,1);
+            }
+        });
+
+        add_recipe_btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getActivity(), "!!!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), favorActivity.class);
+                startActivityForResult(intent,1);
+            }
+        });
+
+
+
         return inflater.inflate(R.layout.fragment_person_space, container, false);
     }
+
+   /* @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        myRecipe1_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "!!!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(),RecipeActivity.class);
+                startActivityForResult(intent,1);
+            }
+        });
+
+    }*/
+
 
 //    // TODO: Rename method, update argument and hook method into UI event
 //    public void onButtonPressed(Uri uri) {

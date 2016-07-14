@@ -26,6 +26,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id = "@+id/setting_layout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="5dp"
@@ -49,6 +50,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id = "@+id/edit_info_layout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="5dp"
@@ -72,6 +74,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id = "@+id/contact_us_layout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="5dp"
@@ -96,6 +99,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id = "@+id/share_layout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="5dp"

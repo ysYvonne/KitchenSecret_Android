@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
-    useLibrary  'org.apache.http.legacy'
+    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "com.meetyouatnowhere.kitchensecret_android"
@@ -23,10 +23,12 @@ android {
 dependencies {
     compile files('libs/universal-image-loader-1.9.3.jar')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.0'
-    compile 'com.android.support:design:23.1.0'
     compile files('libs/android-async-http-1.4.6.jar')
     compile files('libs/jackson-annotations-2.2.0.jar')
     compile files('libs/jackson-core-2.2.0.jar')
     compile files('libs/jackson-databind-2.2.0.jar')
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }
