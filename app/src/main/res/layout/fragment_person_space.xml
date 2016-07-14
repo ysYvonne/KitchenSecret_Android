@@ -47,7 +47,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:weightSum="1">
 
                     <ImageView
                         android:id="@+id/photo_img"
@@ -62,7 +63,8 @@
                         android:id="@+id/user_info_rl"
                         android:layout_width="146dp"
                         android:layout_height="173dp"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="0.48">
 
                         <TextView
                             android:id="@+id/name_tv"
@@ -122,18 +124,6 @@
                     <RelativeLayout
                         android:layout_width="56dp"
                         android:layout_height="match_parent">
-
-                        <Button
-                            android:id="@+id/setting_fab"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-
-                            app:layout_anchor="@id/app_bar"
-                            app:layout_anchorGravity="end"
-
-                            android:gravity="top|end|right"
-                            android:background="@mipmap/setting"
-                            android:layout_alignParentEnd="true" />
 
                         <Button
                             android:layout_width="wrap_content"

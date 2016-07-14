@@ -35,7 +35,7 @@ public class PersonSpaceFragment extends Fragment {
     private ImageButton myRecipe1_btn;
     private ImageButton myRecipe2_btn;
     private ImageButton myRecipe3_btn;
-    private ImageButton add_btn;
+    private ImageButton add_recipe_btn;
 
 
 //    private OnFragmentInteractionListener mListener;
@@ -79,16 +79,27 @@ public class PersonSpaceFragment extends Fragment {
         myRecipe1_btn = (ImageButton)view.findViewById(R.id.myRecipe1_btn);
         myRecipe2_btn = (ImageButton)view.findViewById(R.id.myRecipe2_btn);
         myRecipe3_btn = (ImageButton)view.findViewById(R.id.myRecipe3_btn);
-        add_btn = (ImageButton)view.findViewById(R.id.add_btn);
+        add_recipe_btn = (ImageButton)view.findViewById(R.id.add_recipe_btn);
 
         myRecipe1_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "!!!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "!!!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(),RecipeActivity.class);
                 startActivityForResult(intent,1);
             }
         });
+
+        add_recipe_btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getActivity(), "!!!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), favorActivity.class);
+                startActivityForResult(intent,1);
+            }
+        });
+
+
 
         return inflater.inflate(R.layout.fragment_person_space, container, false);
     }
