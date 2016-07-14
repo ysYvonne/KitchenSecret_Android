@@ -22,7 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.mykitchen.activity.LoginActivity"></activity>
+        <activity
+            android:name="com.example.mykitchen.activity.LoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <activity android:name=".activity.RecipeDetailActivity"></activity>
+        <activity android:name=".activity.RecipeAddActivity"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.example.mykitchen.activity;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         TextView email=(TextView)findViewById(R.id.email);
         TextView intro=(TextView)findViewById(R.id.intro);
         Button btn=(Button)findViewById(R.id.button);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.contentFrame, new RecipeFragment()).commit();
 
         nick.setText(MyApplication.getInstance().getUserBean().getNickname());
         email.setText(MyApplication.getInstance().getUserBean().getEmail());

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/title_nav_bar" >
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@mipmap/back" />
+
+        <TextView
+            android:id="@+id/tv_recipe_name"
+            style="@style/title_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="菜谱详情" />
+    </RelativeLayout>
+
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/recipe_description_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@mipmap/item"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/img_recipe_picture"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:src="@mipmap/default_recipe_picture" />
+
+                <TextView
+                    android:id="@+id/tv_recipe_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Description:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_main" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:gravity="center" >
+
+                <LinearLayout
+                    android:id="@+id/ll_recipe_favor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
+                    android:layout_toLeftOf="@+id/ll_recipe_comment"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:id="@+id/img_recipe_favor"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/favor_selector" />
+
+                    <TextView
+                        android:id="@+id/tv_favor_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="Favor"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_main" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_recipe_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentRight="true"
+                        android:src="@mipmap/comment_recipe" />
+
+                    <TextView
+                        android:id="@+id/tv_comment_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="Comment"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_main" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/recipe_ingridient_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recipe_description_ll"
+            android:layout_margin="5dp"
+            android:background="@mipmap/item"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Recipe ingredients:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_big" />
+
+            <ImageView style="@style/item_line_style" />
+
+            <TextView
+                android:id="@+id/tv_recipe_ingredient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="ingredients ingredients ingredients"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_main" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recipe_ingridient_ll"
+            android:layout_margin="5dp"
+            android:background="@mipmap/item"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Recipe steps:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_big" />
+
+            <ImageView style="@style/item_line_style" />
+
+            <TextView
+                android:id="@+id/tv_recipe_step"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Step 1: ingredients ingredients ingredients"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_main" />
+        </LinearLayout>
+
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/recipe_pay_rl"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:background="@mipmap/bottom" >-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:orientation="horizontal" >-->
+
+                <!--<Button-->
+                    <!--android:id="@+id/btn_recipe_pay_remove"-->
+                    <!--android:layout_width="30dp"-->
+                    <!--android:layout_height="30dp"-->
+                    <!--android:layout_marginBottom="6dp"-->
+                    <!--android:layout_marginLeft="6dp"-->
+                    <!--android:layout_marginTop="6dp"-->
+                    <!--android:background="@mipmap/recipe_pay_remove" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_recipe_pay_count"-->
+                    <!--android:layout_width="30dp"-->
+                    <!--android:layout_height="30dp"-->
+                    <!--android:layout_margin="6dp"-->
+                    <!--android:background="@mipmap/recipe_pay_count"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="1"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="@dimen/text_big" />-->
+
+                <!--<Button-->
+                    <!--android:id="@+id/btn_recipe_pay_add"-->
+                    <!--android:layout_width="30dp"-->
+                    <!--android:layout_height="30dp"-->
+                    <!--android:layout_marginBottom="6dp"-->
+                    <!--android:layout_marginTop="6dp"-->
+                    <!--android:background="@mipmap/recipe_pay_add" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_recipe_price"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="6dp"-->
+                    <!--android:text="$Price:5"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:textSize="@dimen/text_big" />-->
+            <!--</LinearLayout>-->
+
+            <!--<Button-->
+                <!--android:id="@+id/btn_recipe_pay"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_margin="6dp"-->
+                <!--android:background="@mipmap/recipe_pay_btn"-->
+                <!--android:text="@string/recipe_pay"-->
+                <!--android:textColor="@color/white" />-->
+        <!--</RelativeLayout>-->
+    </RelativeLayout>
+</ScrollView>
+
+</LinearLayout>
