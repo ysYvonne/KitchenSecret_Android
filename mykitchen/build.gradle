@@ -6,7 +6,7 @@ android {
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.example.mykitchen"
-        minSdkVersion 22
+        minSdkVersion 19
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"

@@ -19,6 +19,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.meetyouatnowhere.kitchensecret_android.MyApplication;
 import com.meetyouatnowhere.kitchensecret_android.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(!MyApplication.getInstance().isLogin()){
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
+        }
+
+
         setContentView(R.layout.activity_main);
 
        /* btn_recipe = (Button) findViewById(R.id.recipe_btn);

@@ -139,9 +139,10 @@ public class ImageFetcher extends ImageResizer {
 //            Log.d(TAG, "downloadBitmap - downloading - " + urlString);
         }
 
-        Utils.disableConnectionReuseIfNecessary();
+//        Utils.disableConnectionReuseIfNecessary();
         HttpURLConnection urlConnection = null;
         BufferedOutputStream out = null;
+
 
         try {
             final URL url = new URL(urlString);
@@ -171,6 +172,8 @@ public class ImageFetcher extends ImageResizer {
                 }
             }
         }
+
+
 
         return null;
     }

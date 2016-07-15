@@ -173,8 +173,6 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_big" />
 
-                    <ImageView style="@style/item_line_style" />
-
                     <TextView
                         android:id="@+id/tv_dish_step"
                         android:layout_width="wrap_content"

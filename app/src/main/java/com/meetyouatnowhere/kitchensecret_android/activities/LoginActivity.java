@@ -1,11 +1,8 @@
 package com.meetyouatnowhere.kitchensecret_android.activities;
 
-import android.app.Activity;
 import android.annotation.SuppressLint;
-import android.app.Notification;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Base64;
@@ -16,10 +13,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
+import com.meetyouatnowhere.kitchensecret_android.bean.JsonTobean;
+import com.meetyouatnowhere.kitchensecret_android.MyApplication;
+import com.meetyouatnowhere.kitchensecret_android.util.KitchenRestClient;
 import com.meetyouatnowhere.kitchensecret_android.R;
+import com.meetyouatnowhere.kitchensecret_android.util.SharedPreferencesUtil;
+import com.meetyouatnowhere.kitchensecret_android.bean.UserBean;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
-public class LoginActivity extends Activity {
+import org.apache.http.Header;
+import org.json.JSONArray;
+
+import java.util.List;
+
+/**
+ * Created by ping on 2016/7/12.
+ */
+public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
 
     public static final String TAG_USER_ACCOUNT = "user.s";
     public static int KEY_IS_LOGIN = 1;
@@ -30,12 +41,9 @@ public class LoginActivity extends Activity {
     private Button back_btn;
     private String username;
     private String password;
-
+    private UserBean userBean;
+    private List<UserBean> userList;
     private ProgressDialog progress;
-
-    private int request = 1;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,44 +56,23 @@ public class LoginActivity extends Activity {
         username_et = (EditText) this.findViewById(R.id.et_username);
         password_et = (EditText) this.findViewById(R.id.et_password);
         login_btn = (Button) this.findViewById(R.id.btn_login);
-
-      //  login_btn.setOnClickListener();
-       // back_btn.setOnClickListener(this);
+//        back_btn = (Button) this.findViewById(R.id.btn_back);
+        login_btn.setOnClickListener(this);
+//        back_btn.setOnClickListener(this);
     }
-
- //   @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_login:
-                checkLogin();
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivityForResult(intent, request);
-                break;
-            default:
-                break;
-        }
-    }
-
-    public void setUserNameAndPassWord(String username, String password){
-        this.username = username;
-        this.password = password;
-
-        login();
-    }
-
 
     public void checkLogin() {
         username = username_et.getText().toString().trim();
         password = password_et.getText().toString().trim();
         if (username == null || "".equals(username)) {
-            Toast.makeText(this, "请输入用户名嘿", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "请输入用户名啦~", Toast.LENGTH_SHORT).show();
             username_et.setFocusable(true);
         } else if (password == null || "".equals(password)) {
-            Toast.makeText(this, "请输入密码嘿", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "请输入密码咯~", Toast.LENGTH_SHORT).show();
             password_et.setFocusable(true);
         } else {
             progress = new ProgressDialog(this);
-            progress.setMessage("正在登录......");
+            progress.setMessage("登录ing......");
             progress.show();
             login();
         }
@@ -96,10 +83,8 @@ public class LoginActivity extends Activity {
         String str = username + ":" + password;
         String encodeStr = Base64.encodeToString(str.getBytes(), Base64.DEFAULT);
         String loginStr = "Basic " + encodeStr;
-
-        /*连接服务器
-        NourritureRestClient.addHeader(loginStr);
-        NourritureRestClient.post("login", null, new JsonHttpResponseHandler() {
+        KitchenRestClient.addHeader(loginStr);
+        KitchenRestClient.post("login", null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 Log.e("login", response.toString());
@@ -112,10 +97,11 @@ public class LoginActivity extends Activity {
                         MyApplication.getInstance().updateOrSaveUserBean(userList.get(0));
                         MyApplication.getInstance().islogin = true;
                         SharedPreferencesUtil.saveLogin(getBaseContext(), username, password, true);
-                        Toast.makeText(LoginActivity.this, "Login Success.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "登录成功~", Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent();
-                        setResult(KEY_IS_LOGIN, intent);
+                        Intent intent = new Intent(LoginActivity.this,PersonSpaceFragment.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        getBaseContext().startActivity(intent);
                         finish();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -124,7 +110,7 @@ public class LoginActivity extends Activity {
                     username_et.setText(null);
                     password_et.setText(null);
                     username_et.requestFocus();
-                    Toast.makeText(LoginActivity.this, "Username or Password is wrong.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "用户名或者密码有误", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -139,9 +125,44 @@ public class LoginActivity extends Activity {
                 Toast.makeText(LoginActivity.this, "Username or Password is wrong.", Toast.LENGTH_SHORT).show();
             }
         });
-        */
     }
 
+    @SuppressLint("NewApi")
+    public void register(String nickname,String password,String birth,String sex,String username,String info) {
+        RequestParams params = new RequestParams();
+        params.add("nickname",nickname);
+        KitchenRestClient.post("users", null, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                if (progress.isShowing()) {
+                    progress.dismiss();
+                }
+                username_et.setText(null);
+                password_et.setText(null);
+                username_et.requestFocus();
+                Toast.makeText(LoginActivity.this, "Username or Password is wrong.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_login:
+                checkLogin();
+                break;
+//            case R.id.btn_back:
+//                finish();
+//                break;
+            default:
+                break;
+        }
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -151,5 +172,4 @@ public class LoginActivity extends Activity {
         }
         return super.onKeyDown(keyCode, event);
     }
-
 }
