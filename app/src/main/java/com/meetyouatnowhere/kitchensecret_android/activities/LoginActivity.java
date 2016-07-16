@@ -99,7 +99,8 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                         SharedPreferencesUtil.saveLogin(getBaseContext(), username, password, true);
                         Toast.makeText(LoginActivity.this, "登录成功~", Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(LoginActivity.this,PersonSpaceFragment.class);
+                        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                        //startActivity(intent);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         getBaseContext().startActivity(intent);
                         finish();
@@ -110,7 +111,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                     username_et.setText(null);
                     password_et.setText(null);
                     username_et.requestFocus();
-                    Toast.makeText(LoginActivity.this, "用户名或者密码有误", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "用户名或者密码有误1", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -122,7 +123,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                 username_et.setText(null);
                 password_et.setText(null);
                 username_et.requestFocus();
-                Toast.makeText(LoginActivity.this, "用户名或者密码错误.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "用户名或者密码错误2.", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -145,7 +146,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                 username_et.setText(null);
                 password_et.setText(null);
                 username_et.requestFocus();
-                Toast.makeText(LoginActivity.this, "用户名或者密码错误.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "用户名或者密码错误3.", Toast.LENGTH_SHORT).show();
             }
         });
     }

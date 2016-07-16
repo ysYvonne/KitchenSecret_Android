@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by ping on 2016/7/12.
+ * Created by ping on 2014/12/21.
  */
 public class UserBean implements Serializable {
 
@@ -174,3 +174,4 @@ public class UserBean implements Serializable {
 //        this.friends = friends;
 //    }
 }
+

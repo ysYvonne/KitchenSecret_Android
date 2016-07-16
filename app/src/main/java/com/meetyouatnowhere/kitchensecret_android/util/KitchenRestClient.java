@@ -1,8 +1,5 @@
 package com.meetyouatnowhere.kitchensecret_android.util;
 
-/**
- * Created by yisheng on 16/7/12.
- */
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;

@@ -1,8 +1,5 @@
 package com.meetyouatnowhere.kitchensecret_android.util;
 
-/**
- * Created by yisheng on 16/7/12.
- */
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;

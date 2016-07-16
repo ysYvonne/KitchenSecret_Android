@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTabHost;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -49,13 +51,33 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-       /* if(!MyApplication.getInstance().isLogin()){
+
+//       if(!MyApplication.getInstance().isLogin()){
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            finish();
-        }*/
+//            finish();
+//        }
 
 
         setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
+        TextView nick=(TextView)findViewById(R.id.name_tv);
+        TextView email=(TextView)findViewById(R.id.email_tv);
+        TextView intro=(TextView)findViewById(R.id.description_tv);
+        //Button btn=(Button)findViewById(R.id.btn);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.contentLayout, new MyRecipeFragment()).commit();
+
+        nick.setText(MyApplication.getInstance().getUserBean().getNickname());
+        email.setText(MyApplication.getInstance().getUserBean().getEmail());
+        intro.setText(MyApplication.getInstance().getUserBean().getIntro());
+        /*btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyApplication.getInstance().clearUserBean();
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                finish();
+            }
+        });*/
 
        /* btn_recipe = (Button) findViewById(R.id.recipe_btn);
         btn_myCommunity = (Button) findViewById(R.id.myCommunity_btn);
