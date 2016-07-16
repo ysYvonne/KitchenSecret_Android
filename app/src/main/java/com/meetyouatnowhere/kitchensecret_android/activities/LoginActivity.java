@@ -122,7 +122,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                 username_et.setText(null);
                 password_et.setText(null);
                 username_et.requestFocus();
-                Toast.makeText(LoginActivity.this, "Username or Password is wrong.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "用户名或者密码错误.", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -145,7 +145,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                 username_et.setText(null);
                 password_et.setText(null);
                 username_et.requestFocus();
-                Toast.makeText(LoginActivity.this, "Username or Password is wrong.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "用户名或者密码错误.", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -49,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(!MyApplication.getInstance().isLogin()){
+       /* if(!MyApplication.getInstance().isLogin()){
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             finish();
-        }
+        }*/
 
 
         setContentView(R.layout.activity_main);

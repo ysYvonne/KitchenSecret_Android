@@ -1,4 +1,6 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -33,115 +35,120 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
+
+
 
                 <LinearLayout
-                    android:id="@+id/user_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:weightSum="1">
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/photo_img"
-                        android:layout_width="140dp"
-                        android:layout_height="140dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="7dp"
-                        android:background="@mipmap/default_avatar" />
+                    <LinearLayout
+                        android:id="@+id/user_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:weightSum="1">
 
-                    <RelativeLayout
-                        android:id="@+id/user_info_rl"
-                        android:layout_width="146dp"
-                        android:layout_height="173dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="0.48">
+                        <ImageView
+                            android:id="@+id/photo_img"
+                            android:layout_width="140dp"
+                            android:layout_height="140dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="7dp"
+                            android:background="@mipmap/default_avatar" />
 
-                        <TextView
-                            android:id="@+id/name_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:text="昵称:"
-                            android:textColor="@android:color/background_light"
-                            android:textSize="@dimen/text_main" />
-
-                        <TextView
-                            android:id="@+id/birth_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/name_tv"
-                            android:layout_marginLeft="10dp"
+                        <RelativeLayout
+                            android:id="@+id/user_info_rl"
+                            android:layout_width="146dp"
+                            android:layout_height="173dp"
                             android:layout_marginTop="10dp"
-                            android:text="生日："
-                            android:textColor="@android:color/background_light"
-                            android:textSize="@dimen/text_main" />
+                            android:layout_weight="0.48">
 
-                        <TextView
-                            android:id="@+id/sex_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/birth_tv"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:text="性别: "
-                            android:textColor="@android:color/background_light"
-                            android:textSize="@dimen/text_main" />
+                            <TextView
+                                android:id="@+id/name_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="昵称:"
+                                android:textColor="@android:color/background_light"
+                                android:textSize="@dimen/text_main" />
 
-                        <TextView
-                            android:id="@+id/email_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/sex_tv"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:text="邮箱: "
-                            android:textColor="@android:color/background_light"
-                            android:textSize="@dimen/text_main" />
+                            <TextView
+                                android:id="@+id/birth_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/name_tv"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="生日："
+                                android:textColor="@android:color/background_light"
+                                android:textSize="@dimen/text_main" />
 
-                        <TextView
-                            android:id="@+id/description_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/email_tv"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:text="个人宣言: "
-                            android:textColor="@android:color/background_light"
-                            android:textSize="@dimen/text_main" />
+                            <TextView
+                                android:id="@+id/sex_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/birth_tv"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="性别: "
+                                android:textColor="@android:color/background_light"
+                                android:textSize="@dimen/text_main" />
 
-                    </RelativeLayout>
+                            <TextView
+                                android:id="@+id/email_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/sex_tv"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="邮箱: "
+                                android:textColor="@android:color/background_light"
+                                android:textSize="@dimen/text_main" />
 
-                    <RelativeLayout
-                        android:layout_width="56dp"
-                        android:layout_height="match_parent">
+                            <TextView
+                                android:id="@+id/description_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/email_tv"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="个人宣言: "
+                                android:textColor="@android:color/background_light"
+                                android:textSize="@dimen/text_main" />
 
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@mipmap/star"
-                            android:id="@+id/favor_btn"
-                            android:layout_alignParentBottom="true"
-                            android:layout_alignParentStart="true" />
-                    </RelativeLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="56dp"
+                            android:layout_height="match_parent">
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@mipmap/star"
+                                android:id="@+id/favor_btn"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentStart="true" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_person_space" />
+    <include layout="@layout/fragment_my_recipe" />
+
 
 
 </LinearLayout>

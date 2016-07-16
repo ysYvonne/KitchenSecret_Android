@@ -132,7 +132,7 @@ public class AddRecipeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    public static int KEY_ADD_DISH = 2;
 //    private OnFragmentInteractionListener mListener;
 
     public AddRecipeFragment() {

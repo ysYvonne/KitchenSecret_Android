@@ -78,7 +78,7 @@ public class PersonSpaceFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_person_space, null);
-        myRecipe1_btn = (ImageButton)view.findViewById(R.id.myRecipe1_btn);
+       /* myRecipe1_btn = (ImageButton)view.findViewById(R.id.myRecipe1_btn);
         myRecipe2_btn = (ImageButton)view.findViewById(R.id.myRecipe2_btn);
         myRecipe3_btn = (ImageButton)view.findViewById(R.id.myRecipe3_btn);
         add_recipe_btn = (ImageButton)view.findViewById(R.id.add_recipe_btn);
@@ -102,8 +102,8 @@ public class PersonSpaceFragment extends Fragment {
         });
 
 
-
-        return inflater.inflate(R.layout.fragment_person_space, container, false);
+*/
+        return view;
     }
 
    /* @Override
