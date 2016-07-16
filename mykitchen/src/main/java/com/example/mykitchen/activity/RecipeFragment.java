@@ -230,7 +230,7 @@ public class RecipeFragment extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
     public void getAllRecipees() {
-        KitchenRestClient.get("getrecipes", null, new JsonHttpResponseHandler() {
+        KitchenRestClient.get("recipe", null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 Log.e("recipe", response.toString());

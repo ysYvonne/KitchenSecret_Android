@@ -68,6 +68,7 @@ public class RecipeAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
+
             convertView = mInflater.inflate(R.layout.item_recipe, null);
             rvh = new RecipeViewHolder();
             rvh.Recipe_item_rl = (LinearLayout) convertView.findViewById(R.id.recipe_item_ll);

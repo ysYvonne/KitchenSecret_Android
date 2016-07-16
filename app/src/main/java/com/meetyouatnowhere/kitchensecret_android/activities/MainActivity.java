@@ -53,23 +53,22 @@ public class MainActivity extends AppCompatActivity {
 
 
 //       if(!MyApplication.getInstance().isLogin()){
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+//            startActivity(new Intent(MainActivity.this, LoginActivity.class));
 //            finish();
 //        }
 
 
         setContentView(R.layout.activity_main);
-        setContentView(R.layout.activity_main);
-        TextView nick=(TextView)findViewById(R.id.name_tv);
-        TextView email=(TextView)findViewById(R.id.email_tv);
-        TextView intro=(TextView)findViewById(R.id.description_tv);
+//        TextView nick=(TextView)findViewById(R.id.name_tv);
+//        TextView email=(TextView)findViewById(R.id.email_tv);
+//        TextView intro=(TextView)findViewById(R.id.description_tv);
         //Button btn=(Button)findViewById(R.id.btn);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.contentLayout, new MyRecipeFragment()).commit();
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        fragmentManager.beginTransaction().replace(R.id.contentLayout, new MyRecipeFragment()).commit();
 
-        nick.setText(MyApplication.getInstance().getUserBean().getNickname());
-        email.setText(MyApplication.getInstance().getUserBean().getEmail());
-        intro.setText(MyApplication.getInstance().getUserBean().getIntro());
+//        nick.setText(MyApplication.getInstance().getUserBean().getNickname());
+//        email.setText(MyApplication.getInstance().getUserBean().getEmail());
+//        intro.setText(MyApplication.getInstance().getUserBean().getIntro());
         /*btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
