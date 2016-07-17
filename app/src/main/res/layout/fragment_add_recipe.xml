@@ -64,13 +64,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
 
-                    <ImageButton
-                        android:id="@+id/img_dish_picture"
+                    <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:background="@mipmap/dish_add_img" />
+                        android:layout_height="250dp"
+                        android:id="@+id/img_dish_picture"
+                        android:background="@mipmap/uplode_pic"
+                        android:layout_gravity="center" />
 
                 </LinearLayout>
 
@@ -100,7 +99,7 @@
                             android:layout_marginTop="10dp" />
 
                         <LinearLayout
-                            android:layout_width="fill_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:background="@mipmap/login_input"
@@ -109,7 +108,7 @@
 
                             <EditText
                                 android:id="@+id/recipeName_edit"
-                                android:layout_width="fill_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@null"
                                 android:ems="10"
@@ -156,73 +155,10 @@
                         android:padding="5dp"
                         android:paddingRight="30dp"
                         android:textColor="@color/edit_text_color"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:id="@+id/recipeDescription_editText" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/addMaterial"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/add_material"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="10dp" />
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/login_input"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="0.77">
-
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:layout_height="65dp"
-                        android:background="@null"
-                        android:ems="10"
-                        android:focusableInTouchMode="true"
-                        android:gravity="center_vertical"
-                        android:padding="5dp"
-                        android:paddingRight="30dp"
-                        android:textColor="@color/edit_text_color"
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/addSteps"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/add_step"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="10dp" />
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/login_input"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="0.96">
-
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:layout_height="83dp"
-                        android:background="@null"
-                        android:ems="10"
-                        android:focusableInTouchMode="true"
-                        android:gravity="center_vertical"
-                        android:padding="5dp"
-                        android:paddingRight="30dp"
-                        android:textColor="@color/edit_text_color"
-                        android:textSize="20sp" />
-
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView><![CDATA[

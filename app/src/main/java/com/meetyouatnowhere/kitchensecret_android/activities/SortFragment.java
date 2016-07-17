@@ -1,14 +1,12 @@
 package com.meetyouatnowhere.kitchensecret_android.activities;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.meetyouatnowhere.kitchensecret_android.R;
 
@@ -33,7 +31,7 @@ public class SortFragment extends Fragment {
     private ImageButton entree;//主菜1,1
     private ImageButton desert;//甜点1,2
     private ImageButton drink;//饮料1,3
-    private ImageButton sneak;//小吃2,1
+    private ImageButton snack;//小吃2,1
     private ImageButton western;//西餐2,2
     private ImageButton seafood;//海鲜2,3
     private ImageButton difficult;
@@ -107,7 +105,7 @@ public class SortFragment extends Fragment {
         entree = (ImageButton)view.findViewById(R.id.entree_btn);
         desert = (ImageButton)view.findViewById(R.id.desert_btn);
         drink = (ImageButton)view.findViewById(R.id.drink_btn);
-        sneak = (ImageButton)view.findViewById(R.id.sneak_btn);
+        snack = (ImageButton)view.findViewById(R.id.snack_btn);
         western = (ImageButton)view.findViewById(R.id.western_btn);
         seafood = (ImageButton)view.findViewById(R.id.seafood_btn);
         difficult = (ImageButton)view.findViewById(R.id.difficult_btn);
@@ -172,16 +170,16 @@ public class SortFragment extends Fragment {
             }
         });
 
-        sneak.setOnClickListener(new ImageButton.OnClickListener(){
+        snack.setOnClickListener(new ImageButton.OnClickListener(){
             public void onClick(View v) {
                 //如果ImageButton得到焦点onFocus则改变ImageButton的图片
                 //更改按钮背景图
                 //ImageButton aaa=(ImageButton) v;
                 if (!sneakFlag) {
-                    sneak.setBackground(getResources().getDrawable(R.mipmap.sneak_grey));
+                    snack.setBackground(getResources().getDrawable(R.mipmap.snack_grey));
                     sneakFlag = true;
                 } else {
-                    sneak.setBackground(getResources().getDrawable(R.mipmap.sneak));
+                    snack.setBackground(getResources().getDrawable(R.mipmap.snack));
                     sneakFlag = false;
                 }
             }
