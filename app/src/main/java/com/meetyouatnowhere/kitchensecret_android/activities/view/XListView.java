@@ -221,7 +221,7 @@ public class XListView extends MultiColumnListView implements PLA_AbsListView.On
 			finalHeight = mHeaderViewHeight;
 		}
 		mScrollBack = SCROLLBACK_HEADER;
-		finalHeight=1100;
+		finalHeight=800;
 		Integer d=finalHeight - height;
 //		Log.i("TAG",finalHeight+"/"+height+"/"+d.toString());
 		mScroller.startScroll(0, height, 0, finalHeight - height, SCROLL_DURATION);

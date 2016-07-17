@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@mipmap/news_item_bg"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:padding="8dp">
 
     <com.dodowaterfall.widget.ScaleImageView
         android:id="@+id/news_pic"
@@ -17,6 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:singleLine="false"
+        android:text="名称"
         android:textColor="#656565" />
 
     <TextView
@@ -25,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"
         android:gravity="right"
-        android:textColor="#9f9f9f" />
+        android:textColor="#9f9f9f"
+        android:text="❤"/>
 
 </LinearLayout>
