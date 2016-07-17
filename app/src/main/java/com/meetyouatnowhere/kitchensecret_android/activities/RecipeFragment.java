@@ -14,25 +14,34 @@ import android.util.Log;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.dodowaterfall.Helper;
 import com.dodowaterfall.widget.ScaleImageView;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.meetyouatnowhere.kitchensecret_android.activities.adapter.RecipeAdapter;
 import com.meetyouatnowhere.kitchensecret_android.activities.bannerview.ImagePagerAdapter;
 import com.meetyouatnowhere.kitchensecret_android.R;
 import com.meetyouatnowhere.kitchensecret_android.activities.bannerview.CircleFlowIndicator;
 import com.meetyouatnowhere.kitchensecret_android.activities.bannerview.ViewFlow;
 import com.meetyouatnowhere.kitchensecret_android.activities.pulldown.PullToRefreshSampleActivity;
 import com.meetyouatnowhere.kitchensecret_android.activities.view.XListView;
+import com.meetyouatnowhere.kitchensecret_android.bean.JsonTobean;
+import com.meetyouatnowhere.kitchensecret_android.bean.RecipeBean;
 import com.meetyouatnowhere.kitchensecret_android.util.ImageFetcher;
+import com.meetyouatnowhere.kitchensecret_android.util.KitchenRestClient;
+import com.meetyouatnowhere.kitchensecret_android.util.ObjectPersistence;
 import com.model.DuitangInfo;
 
+import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -57,7 +66,7 @@ public class RecipeFragment extends Fragment implements XListView.IXListViewList
     private int currentPage = 0;
     ContentTask task = new ContentTask(this.getActivity(), 2);
 //    private OnFragmentInteractionListener mListener;
-private class ContentTask extends AsyncTask<String, Integer, List<DuitangInfo>> {
+private class ContentTask extends AsyncTask<String, Integer, List<RecipeBean>> {
 
     private Context mContext;
     private int mType = 1;
@@ -69,7 +78,7 @@ private class ContentTask extends AsyncTask<String, Integer, List<DuitangInfo>> 
     }
 
     @Override
-    protected List<DuitangInfo> doInBackground(String... params) {
+    protected List<RecipeBean> doInBackground(String... params) {
         try {
             return parseNewsJSON(params[0]);
         } catch (IOException e) {
@@ -79,7 +88,7 @@ private class ContentTask extends AsyncTask<String, Integer, List<DuitangInfo>> 
     }
 
     @Override
-    protected void onPostExecute(List<DuitangInfo> result) {
+    protected void onPostExecute(List<RecipeBean> result) {
         if (mType == 1) {
 
             mAdapter.addItemTop(result);
@@ -98,41 +107,42 @@ private class ContentTask extends AsyncTask<String, Integer, List<DuitangInfo>> 
     protected void onPreExecute() {
     }
 
-    public List<DuitangInfo> parseNewsJSON(String url) throws IOException {
-        List<DuitangInfo> duitangs = new ArrayList<DuitangInfo>();
+    public List<RecipeBean> parseNewsJSON(String url) throws IOException {
+        List<RecipeBean> recipeList = new ArrayList<RecipeBean>();
         String json = "";
         if (Helper.checkConnection(mContext)) {
             try {
                 json = Helper.getStringFromUrl(url);
-
+                recipeList=JsonTobean.getList(RecipeBean[].class,json.toString());
+                Log.i("json",recipeList.toString());
             } catch (IOException e) {
                 Log.e("IOException is : ", e.toString());
                 e.printStackTrace();
-                return duitangs;
+                return recipeList;
             }
         }
         Log.d("RecipeFragment", "json:" + json);
 
-        try {
-            if (null != json) {
-                JSONObject newsObject = new JSONObject(json);
-                JSONObject jsonObject = newsObject.getJSONObject("data");
-                JSONArray blogsJson = jsonObject.getJSONArray("blogs");
-
-                for (int i = 0; i < blogsJson.length(); i++) {
-                    JSONObject newsInfoLeftObject = blogsJson.getJSONObject(i);
-                    DuitangInfo newsInfo1 = new DuitangInfo();
-                    newsInfo1.setAlbid(newsInfoLeftObject.isNull("albid") ? "" : newsInfoLeftObject.getString("albid"));
-                    newsInfo1.setIsrc(newsInfoLeftObject.isNull("isrc") ? "" : newsInfoLeftObject.getString("isrc"));
-                    newsInfo1.setMsg(newsInfoLeftObject.isNull("msg") ? "" : newsInfoLeftObject.getString("msg"));
-                    newsInfo1.setHeight(newsInfoLeftObject.getInt("iht"));
-                    duitangs.add(newsInfo1);
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return duitangs;
+//        try {
+//            if (null != json) {
+//                JSONObject newsObject = new JSONObject(json);
+//                JSONObject jsonObject = newsObject.getJSONObject("data");
+//                JSONArray blogsJson = jsonObject.getJSONArray("blogs");
+//
+//                for (int i = 0; i < blogsJson.length(); i++) {
+//                    JSONObject newsInfoLeftObject = blogsJson.getJSONObject(i);
+//                    DuitangInfo newsInfo1 = new DuitangInfo();
+//                    newsInfo1.setAlbid(newsInfoLeftObject.isNull("albid") ? "" : newsInfoLeftObject.getString("albid"));
+//                    newsInfo1.setIsrc(newsInfoLeftObject.isNull("isrc") ? "" : newsInfoLeftObject.getString("isrc"));
+//                    newsInfo1.setMsg(newsInfoLeftObject.isNull("msg") ? "" : newsInfoLeftObject.getString("msg"));
+//                    newsInfo1.setHeight(newsInfoLeftObject.getInt("iht"));
+//                    recipeList.add(newsInfo1);
+//                }
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+        return recipeList;
     }
 }
     public RecipeFragment() {
@@ -147,7 +157,8 @@ private class ContentTask extends AsyncTask<String, Integer, List<DuitangInfo>> 
      */
     private void AddItemToContainer(int pageindex, int type) {
         if (task.getStatus() != AsyncTask.Status.RUNNING) {
-            String url = "http://www.duitang.com/album/1733789/masn/p/" + pageindex + "/24/";
+//            String url = "http://www.duitang.com/album/1733789/masn/p/" + pageindex + "/24/";
+            String url="http://120.27.95.40:8000/api/recipe";
             Log.d("MainActivity", "current url:" + url);
             ContentTask task = new ContentTask(this.getActivity(), type);
             task.execute(url);
@@ -157,12 +168,12 @@ private class ContentTask extends AsyncTask<String, Integer, List<DuitangInfo>> 
 
     public class StaggeredAdapter extends BaseAdapter {
         private Context mContext;
-        private LinkedList<DuitangInfo> mInfos;
+        private LinkedList<RecipeBean> mInfos;
         private XListView mListView;
 
         public StaggeredAdapter(Context context, XListView xListView) {
             mContext = context;
-            mInfos = new LinkedList<DuitangInfo>();
+            mInfos = new LinkedList<RecipeBean>();
             mListView = xListView;
         }
 
@@ -170,7 +181,7 @@ private class ContentTask extends AsyncTask<String, Integer, List<DuitangInfo>> 
         public View getView(int position, View convertView, ViewGroup parent) {
 
             ViewHolder holder;
-            DuitangInfo duitangInfo = mInfos.get(position);
+            RecipeBean duitangInfo = mInfos.get(position);
 
             if (convertView == null) {
                 LayoutInflater layoutInflator = LayoutInflater.from(parent.getContext());
@@ -182,10 +193,11 @@ private class ContentTask extends AsyncTask<String, Integer, List<DuitangInfo>> 
             }
 
             holder = (ViewHolder) convertView.getTag();
-            holder.imageView.setImageWidth(duitangInfo.getWidth());
-            holder.imageView.setImageHeight(duitangInfo.getHeight());
-            holder.contentView.setText(duitangInfo.getMsg());
-            mImageFetcher.loadImage(duitangInfo.getIsrc(), holder.imageView);
+            holder.imageView.setImageWidth(500);
+            holder.imageView.setImageHeight(500);
+            holder.contentView.setText(duitangInfo.getName());
+//            mImageFetcher.loadImage(duitangInfo.getIsrc(), holder.imageView);
+            mImageFetcher.loadImage("http://120.27.95.40:8000/"+duitangInfo.getPhoto(),holder.imageView);
             return convertView;
         }
 
@@ -210,12 +222,12 @@ private class ContentTask extends AsyncTask<String, Integer, List<DuitangInfo>> 
             return 0;
         }
 
-        public void addItemLast(List<DuitangInfo> datas) {
+        public void addItemLast(List<RecipeBean> datas) {
             mInfos.addAll(datas);
         }
 
-        public void addItemTop(List<DuitangInfo> datas) {
-            for (DuitangInfo info : datas) {
+        public void addItemTop(List<RecipeBean> datas) {
+            for (RecipeBean info : datas) {
                 mInfos.addFirst(info);
             }
         }

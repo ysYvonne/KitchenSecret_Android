@@ -6,10 +6,12 @@ package com.meetyouatnowhere.kitchensecret_android.activities;
         import android.content.SharedPreferences;
         import android.os.Bundle;
         import android.os.Handler;
+        import android.support.annotation.Nullable;
         import android.support.v4.app.Fragment;
         import android.support.v4.widget.SwipeRefreshLayout;
         import android.text.Editable;
         import android.text.TextWatcher;
+        import android.util.AttributeSet;
         import android.util.Log;
         import android.view.LayoutInflater;
         import android.view.View;
@@ -65,19 +67,50 @@ public class MyRecipeFragment extends Fragment implements SwipeRefreshLayout.OnR
     private int request = 1;
     private RecipeBean recipeAddBean; // the recipe added by user
     private SharedPreferences sp;
-
+    private String TAG="myRecipeFragment";
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG,"onCreate");
         super.onCreate(savedInstanceState);
+    }
+    @Override
+    public void onAttach(Context context) {
+        Log.i(TAG,"onAttach");
+        super.onAttach(context);
     }
 
     @Override
+    public void onStart() {
+        Log.i(TAG,"onStart");
+        super.onStart();
+    }
+
+    @Override
+    public void onResume() {
+        Log.i(TAG,"onResume");
+        super.onResume();
+    }
+
+    @Override
+    public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
+        Log.i(TAG,"onInflate");
+        super.onInflate(context, attrs, savedInstanceState);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        Log.i(TAG,"onViewCreated");
+        super.onViewCreated(view, savedInstanceState);
+    }
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_recipe, container, false);
+        Log.i(TAG,"onCreateView");
+        return inflater.inflate(R.layout.fragment_my_recipe, container, false);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
+        Log.i(TAG,"onActivityCreated");
         super.onActivityCreated(savedInstanceState);
         mContext = getActivity();
 
@@ -120,7 +153,7 @@ public class MyRecipeFragment extends Fragment implements SwipeRefreshLayout.OnR
         addRecipe_btn.setOnClickListener(this);
         search_btn.setOnClickListener(this);
 
-        swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swipe_refresh);
+        swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swipe_refresh_myrecipe);
         swipeLayout.setOnRefreshListener(this);
         //加载颜色是循环播放的，只要没有完成刷新就会一直循环，color1>color2>color3>color4
         swipeLayout.setColorSchemeResources(android.R.color.holo_red_light,android.R.color.holo_green_light,android.R.color.holo_blue_bright,android.R.color.holo_orange_light);
@@ -230,7 +263,7 @@ public class MyRecipeFragment extends Fragment implements SwipeRefreshLayout.OnR
     }
 
     public void getAllRecipees() {
-        KitchenRestClient.get("getrecipes", null, new JsonHttpResponseHandler() {
+        KitchenRestClient.get("recipe", null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 Log.e("recipe", response.toString());

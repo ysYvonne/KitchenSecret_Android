@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -118,9 +117,9 @@ public class RecipeActivity extends ActionBarActivity implements View.OnClickLis
 
         asynImageLoader = new AsynImageLoader();
         if (recipeBean.getPhoto() == null || "".equals(recipeBean.getPhoto().trim()) || "null".equals(recipeBean.getPhoto().trim())) {
-            recipe_picture_img.setImageResource(R.mipmap.default_dish_picture);
+            recipe_picture_img.setImageResource(R.mipmap.default_recipe_picture);
         } else {
-            asynImageLoader.showImageAsyn(recipe_picture_img, pictureBaseUrl + recipeBean.getPhoto(), R.mipmap.default_dish_picture);
+            asynImageLoader.showImageAsyn(recipe_picture_img, pictureBaseUrl + recipeBean.getPhoto(), R.mipmap.default_recipe_picture);
         }
 
         recipe_ingredient_tv.setText(recipeBean.getMeterials()[0].toString());

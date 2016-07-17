@@ -67,8 +67,9 @@ public class RecipeAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Log.i("adapter","getView");
         if (convertView == null) {
-
+            Log.i("adapter","getView init");
             convertView = mInflater.inflate(R.layout.item_recipe, null);
             rvh = new RecipeViewHolder();
             rvh.Recipe_item_rl = (LinearLayout) convertView.findViewById(R.id.recipe_item_ll);
@@ -78,6 +79,7 @@ public class RecipeAdapter extends BaseAdapter {
             rvh.picture = (ImageView) convertView.findViewById(R.id.recipe_picture_img);
             convertView.setTag(rvh);
         } else {
+            Log.i("adapter","getView assistant");
             rvh = (RecipeViewHolder) convertView.getTag();
         }
 
@@ -91,9 +93,9 @@ public class RecipeAdapter extends BaseAdapter {
 
         AsynImageLoader asynImageLoader = new AsynImageLoader();
         if (RecipeBean.getPhoto() == null || "".equals(RecipeBean.getPhoto().trim()) || "null".equals(RecipeBean.getPhoto().trim())) {
-            rvh.picture.setImageResource(R.mipmap.default_dish_picture);
+            rvh.picture.setImageResource(R.mipmap.default_recipe_picture);
         } else {
-            asynImageLoader.showImageAsyn(rvh.picture, pictureBaseUrl + RecipeBean.getPhoto(), R.mipmap.default_dish_picture);
+            asynImageLoader.showImageAsyn(rvh.picture, pictureBaseUrl + RecipeBean.getPhoto(), R.mipmap.default_recipe_picture);
         }
 
         rvh.Recipe_item_rl.setOnClickListener(new View.OnClickListener() {

@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -73,6 +74,20 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
     private int request = 1;
     private RecipeBean recipeAddBean; // the recipe added by user
     private SharedPreferences sp;
+    private int GET_DATA_SUCCESS=1;
+    Handler handler=new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if(msg.what==GET_DATA_SUCCESS){
+                List<RecipeBean> recipeBeanList=(List<RecipeBean>) msg.obj;
+                recipeAdapter = new RecipeAdapter(getActivity(), recipeBeanList);
+                recipeListView.setAdapter(recipeAdapter);
+                recipeAdapter.notifyDataSetChanged();
+                return true;
+            }
+            return false;
+        }
+    });
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,7 +96,7 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_my_recipe, container, false);
+        return inflater.inflate(R.layout.fragment_person_space, container, false);
     }
 
     @Override
@@ -200,8 +215,9 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
                     recipeAdapter.mRecipeList.clear();
                 }
                 recipeAdapter.mRecipeList.addAll(searchRecipeList);
-                recipeListView.setAdapter(recipeAdapter);
-                recipeAdapter.notifyDataSetChanged();
+                sendData(searchRecipeList);
+//                recipeListView.setAdapter(recipeAdapter);
+//                recipeAdapter.notifyDataSetChanged();
             } else {
                 // search result no recipe.
                 search_et.setText("");
@@ -211,6 +227,13 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
                 Toast.makeText(getActivity(), "No match result. Please try again.", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    private void sendData(Object recipes){
+        Message message=new Message();
+        message.obj=recipes;
+        message.what=GET_DATA_SUCCESS;
+        handler.sendMessage(message);
     }
 
     @Override
@@ -261,8 +284,9 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
                             recipeAdapter = new RecipeAdapter(mContext, false);
                             recipeAdapter.mRecipeList.addAll(recipeList);
                         }
-                        recipeListView.setAdapter(recipeAdapter);
-                        recipeAdapter.notifyDataSetChanged();
+                        sendData(recipeList);
+//                        recipeListView.setAdapter(recipeAdapter);
+//                        recipeAdapter.notifyDataSetChanged();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -279,8 +303,9 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
                             recipeAdapter = new RecipeAdapter(mContext, false);
                             recipeAdapter.mRecipeList.addAll(recipeList);
                         }
-                        recipeListView.setAdapter(recipeAdapter);
-                        recipeAdapter.notifyDataSetChanged();
+                        sendData(recipeList);
+//                        recipeListView.setAdapter(recipeAdapter);
+//                        recipeAdapter.notifyDataSetChanged();
                     } else {
                         Toast.makeText(mContext, "Network kitchendemo is wrong.", Toast.LENGTH_SHORT).show();
                     }
@@ -304,8 +329,9 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
                         recipeAdapter = new RecipeAdapter(mContext, false);
                         recipeAdapter.mRecipeList.addAll(recipeList);
                     }
-                    recipeListView.setAdapter(recipeAdapter);
-                    recipeAdapter.notifyDataSetChanged();
+                    sendData(recipeList);
+//                    recipeListView.setAdapter(recipeAdapter);
+//                    recipeAdapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(mContext, "Network kitchendemo is wrong.", Toast.LENGTH_SHORT).show();
                 }

@@ -87,7 +87,8 @@
                 android:divider="@color/white"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:scrollbars="none" />
+                android:scrollbars="none"
+                android:visibility="visible"/>h
 
         </android.support.v4.widget.SwipeRefreshLayout>
 

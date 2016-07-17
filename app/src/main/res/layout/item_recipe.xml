@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@color/abc_background_cache_hint_selector_material_light"
+        android:background="@mipmap/item"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -87,7 +87,7 @@
             android:layout_height="200dp"
             android:layout_margin="10dp"
             android:layout_gravity="center"
-            android:src="@mipmap/default_dish_picture" />
+            android:src="@mipmap/default_recipe_picture" />
 
         <TextView
             android:id="@+id/recipe_description_tv"

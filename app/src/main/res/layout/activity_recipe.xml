@@ -54,7 +54,7 @@
                             android:layout_height="200dp"
                             android:layout_gravity="center"
                             android:layout_margin="5dp"
-                            android:src="@mipmap/default_dish_picture" />
+                            android:src="@mipmap/default_recipe_picture" />
 
                         <TextView
                             android:id="@+id/tv_dish_description"
