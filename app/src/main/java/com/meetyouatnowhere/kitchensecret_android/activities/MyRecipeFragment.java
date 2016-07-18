@@ -115,6 +115,7 @@ public class MyRecipeFragment extends Fragment implements SwipeRefreshLayout.OnR
         mContext = getActivity();
 
         addRecipe_btn = (Button) getActivity().findViewById(R.id.btn_add_recipe);
+
         searchIconDefault = R.mipmap.search_icon;
         searchIconClear = R.mipmap.search_delete;
         search_btn = (Button) getActivity().findViewById(R.id.btn_search);
@@ -150,6 +151,7 @@ public class MyRecipeFragment extends Fragment implements SwipeRefreshLayout.OnR
                 }
             }
         });
+
         addRecipe_btn.setOnClickListener(this);
         search_btn.setOnClickListener(this);
 

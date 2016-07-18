@@ -23,13 +23,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.pulldown.PullToRefreshSampleActivity"/>
-        <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.LoginActivity"
+            android:parentActivityName=".activities.MainActivity"/>
+        <activity android:name=".activities.RegisterActivity"
+            android:parentActivityName=".activities.MainActivity"/>
         <activity android:name=".activities.favorActivity" />
         <activity android:name=".activities.RecipeActivity" />
         <activity android:name=".activities.EditPersonalInfoActivity" />
-        <activity android:name=".activities.SettingActivity" />
-        <activity android:name=".activities.Setting_detailActivity" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+        <activity android:name=".activities.SettingActivity"
+            android:parentActivityName=".activities.MainActivity"/>
+        <activity android:name=".activities.Setting_detailActivity"
+            android:parentActivityName=".activities.SettingActivity"/><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data
             android:name="com.google.android.gms.version"

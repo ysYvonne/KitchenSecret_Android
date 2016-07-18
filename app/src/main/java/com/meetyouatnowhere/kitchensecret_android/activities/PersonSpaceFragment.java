@@ -91,6 +91,7 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
     }
 

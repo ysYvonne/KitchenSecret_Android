@@ -28,7 +28,7 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initView();
 
        setting_view.setOnClickListener(new View.OnClickListener() {
