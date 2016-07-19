@@ -1,6 +1,7 @@
 package com.meetyouatnowhere.kitchensecret_android.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.meetyouatnowhere.kitchensecret_android.activities.bannerview.CircleFl
 import com.meetyouatnowhere.kitchensecret_android.activities.bannerview.ViewFlow;
 import com.meetyouatnowhere.kitchensecret_android.activities.pulldown.PullToRefreshSampleActivity;
 import com.meetyouatnowhere.kitchensecret_android.activities.view.XListView;
+import com.meetyouatnowhere.kitchensecret_android.activities.view.internal.PLA_AdapterView;
 import com.meetyouatnowhere.kitchensecret_android.bean.JsonTobean;
 import com.meetyouatnowhere.kitchensecret_android.bean.RecipeBean;
 import com.meetyouatnowhere.kitchensecret_android.util.ImageFetcher;
@@ -329,6 +331,17 @@ private class ContentTask extends AsyncTask<String, Integer, List<RecipeBean>> {
             super.onResume();
             mImageFetcher.setExitTasksEarly(false);
             mAdapterView.setAdapter(mAdapter);
+            mAdapterView.setOnItemClickListener(new PLA_AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(PLA_AdapterView<?> parent, View view, int position, long id) {
+                    RecipeBean bean=(RecipeBean)parent.getAdapter().getItem(position);
+                    Intent intent = new Intent(getActivity(), RecipeActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("RecipeBean", bean);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            });
             AddItemToContainer(currentPage, 2);
         }
     @Override

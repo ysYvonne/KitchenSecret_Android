@@ -3,6 +3,7 @@ package com.meetyouatnowhere.kitchensecret_android.activities;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
@@ -88,9 +89,21 @@ public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRef
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private int GET_DATA_SUCCESS=1;
 //    private OnFragmentInteractionListener mListener;
-
+Handler handler=new Handler(new Handler.Callback() {
+    @Override
+    public boolean handleMessage(Message msg) {
+        if(msg.what==GET_DATA_SUCCESS){
+            List<RecipeBean> recipeBeanList=(List<RecipeBean>) msg.obj;
+            recipeAdapter = new RecipeAdapter(getActivity(), recipeBeanList);
+            recipeListView.setAdapter(recipeAdapter);
+            recipeAdapter.notifyDataSetChanged();
+            return true;
+        }
+        return false;
+    }
+});
     public SearchFragment() {
         // Required empty public constructor
     }
@@ -114,7 +127,12 @@ public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
 
     }
-
+    private void sendData(Object recipes){
+        Message message=new Message();
+        message.obj=recipes;
+        message.what=GET_DATA_SUCCESS;
+        handler.sendMessage(message);
+    }
     @Override
     public void onAttach(Context context) {
         Log.i(TAG,"onAttach");
@@ -257,8 +275,7 @@ public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRef
                     recipeAdapter.mRecipeList.clear();
                 }
                 recipeAdapter.mRecipeList.addAll(searchRecipeList);
-                recipeListView.setAdapter(recipeAdapter);
-                recipeAdapter.notifyDataSetChanged();
+                sendData(searchRecipeList);
             } else {
                 // search result no recipe.
                 search_et.setText("");

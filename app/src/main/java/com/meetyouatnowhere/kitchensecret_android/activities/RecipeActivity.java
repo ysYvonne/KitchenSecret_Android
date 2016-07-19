@@ -5,11 +5,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,12 +36,14 @@ import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by heyi on 2016/7/14.
  */
-public class RecipeActivity extends ActionBarActivity implements View.OnClickListener {
+public class RecipeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String DISH_LIKES_DATA_PATH = "_recipe_likes_data.bean";
     private static final String DISH_COMMENTS_DATA_PATH = "_recipe_comments_data.bean";
@@ -45,6 +51,7 @@ public class RecipeActivity extends ActionBarActivity implements View.OnClickLis
     private AsynImageLoader asynImageLoader;
     private Button back_btn;
     private ImageView recipe_picture_img, recipe_favor_img;
+    private ListView material_list;
     private LinearLayout recipe_favor_ll, recipe_comment_ll;
     private TextView recipe_name_tv, recipe_description_tv, recipe_ingredient_tv, recipe_step_tv;
     private TextView favor_num_tv, comment_num_tv;
@@ -78,12 +85,12 @@ public class RecipeActivity extends ActionBarActivity implements View.OnClickLis
         sp = getSharedPreferences(GlobalParams.TAG_LOGIN_PREFERENCES, Context.MODE_PRIVATE);
         isLogin = sp.getBoolean(SharedPreferencesUtil.TAG_IS_LOGIN, false);
         userBean = MyApplication.getInstance().getUserBeanFromFile();
-
         initView();
         initData();
     }
 
     public void initView() {
+
         recipe_name_tv = (TextView) this.findViewById(R.id.tv_dish_name);
         recipe_description_tv = (TextView) this.findViewById(R.id.tv_dish_description);
         recipe_ingredient_tv = (TextView) this.findViewById(R.id.tv_dish_ingredient);
@@ -93,6 +100,7 @@ public class RecipeActivity extends ActionBarActivity implements View.OnClickLis
         recipe_favor_ll = (LinearLayout) this.findViewById(R.id.ll_dish_favor);
 //        recipe_comment_ll = (LinearLayout) this.findViewById(R.id.ll_dish_comment);
         favor_num_tv = (TextView) this.findViewById(R.id.tv_favor_num);
+//        material_list=(ListView)this.findViewById(R.id.material_list);
 //        comment_num_tv = (TextView) this.findViewById(R.id.tv_dish_num);
         //       back_btn = (Button) this.findViewById(R.id.btn_back);
 
@@ -106,9 +114,9 @@ public class RecipeActivity extends ActionBarActivity implements View.OnClickLis
 //        recipe_remove_btn.setOnClickListener(this);
 //        recipe_pay_btn.setOnClickListener(this);
 
-        back_btn.setOnClickListener(this);
+//        back_btn.setOnClickListener(this);
         recipe_favor_ll.setOnClickListener(this);
-        recipe_comment_ll.setOnClickListener(this);
+//        recipe_comment_ll.setOnClickListener(this);
     }
 
     public void initData() {
@@ -121,6 +129,17 @@ public class RecipeActivity extends ActionBarActivity implements View.OnClickLis
         } else {
             asynImageLoader.showImageAsyn(recipe_picture_img, pictureBaseUrl + recipeBean.getPhoto(), R.mipmap.default_recipe_picture);
         }
+
+        try{
+            String json=recipeBean.getMeterials()[0].toString();
+            List<Matrial> matrials=JsonTobean.getList(Matrial[].class,json);
+            MatrialAdapter matrialAdapter=new MatrialAdapter(this,matrials);
+            material_list.setAdapter(matrialAdapter);
+            matrialAdapter.notifyDataSetChanged();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
 
         recipe_ingredient_tv.setText(recipeBean.getMeterials()[0].toString());
         recipe_step_tv.setText(recipeBean.getSteps()[0].toString());
@@ -343,6 +362,112 @@ public class RecipeActivity extends ActionBarActivity implements View.OnClickLis
         }
     }
 
+    public class MatrialAdapter extends BaseAdapter{
+        private Context mContext;
+        private List<Matrial> matrialList;
+
+        public MatrialAdapter(Context mContext, List<Matrial> matrialList) {
+            this.mContext = mContext;
+            this.matrialList = matrialList;
+        }
+
+        @Override
+        public int getCount() {
+            return matrialList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+//
+//            try {
+//                matrialList=JsonTobean.getList(Matrial[].class,recipeBean.getMeterials()[0].toString());
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+            return matrialList.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+            Matrial m=matrialList.get(position);
+            if (convertView == null) {
+                holder = new ViewHolder();
+                holder.name = new TextView(getApplicationContext());
+                holder.detail=new TextView(getApplicationContext());
+                convertView.setTag(holder);
+            }
+
+            holder=(ViewHolder)convertView.getTag();
+            holder.name.setText(m.getName());
+            holder.detail.setText(m.getAmount());
+            return convertView;
+        }
+
+        class ViewHolder {
+            TextView name;
+            TextView detail;
+        }
+    }
+
+    BaseAdapter StepAdapter=new BaseAdapter() {
+        @Override
+        public int getCount() {
+            return 0;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            return null;
+        }
+    };
+
+    public class Matrial implements Serializable {
+        private String name;
+        private String amount;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getAmount() {
+            return amount;
+        }
+
+        public void setAmount(String amount) {
+            this.amount = amount;
+        }
+    }
+    public class Step{
+        String detail;
+
+        public String getDetail() {
+            return detail;
+        }
+
+        public void setDetail(String detail) {
+            this.detail = detail;
+        }
+    }
 }
 
 

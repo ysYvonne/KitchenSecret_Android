@@ -67,7 +67,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
-                        android:id="@+id/img_dish_picture"
+                        android:id="@+id/img_recipe_picture"
                         android:background="@mipmap/uplode_pic"
                         android:layout_gravity="center" />
 
@@ -161,9 +161,5 @@
 
             </LinearLayout>
         </LinearLayout>
-    </ScrollView><![CDATA[
-
-    >
-
-]]>
+    </ScrollView>
 </LinearLayout>
