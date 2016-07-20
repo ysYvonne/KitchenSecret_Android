@@ -89,7 +89,8 @@
                                 android:layout_marginTop="10dp"
                                 android:text="生日："
                                 android:textColor="@android:color/background_light"
-                                android:textSize="@dimen/text_main" />
+                                android:textSize="@dimen/text_main"
+                                android:visibility="gone"/>
 
                             <TextView
                                 android:id="@+id/sex_tv"

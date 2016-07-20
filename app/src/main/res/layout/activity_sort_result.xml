@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background_color"
+    android:orientation="vertical"
+    tools:context="com.meetyouatnowhere.kitchensecret_android.activities.SortResultActivity">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_sort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ListView
+            android:id="@+id/sort_lView"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:divider="@color/white"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:visibility="visible"
+            android:fastScrollEnabled="false" />h
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</LinearLayout>

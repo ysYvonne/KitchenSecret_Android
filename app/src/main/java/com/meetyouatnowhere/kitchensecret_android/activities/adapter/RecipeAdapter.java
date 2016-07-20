@@ -28,6 +28,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import org.apache.http.Header;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ import java.util.List;
 /**
  * Created by heyi on 2016/7/14.
  */
-public class RecipeAdapter extends BaseAdapter {
+public class RecipeAdapter extends BaseAdapter implements Serializable{
 
     public List<RecipeBean> mRecipeList = new ArrayList<RecipeBean>();
     private LayoutInflater mInflater;

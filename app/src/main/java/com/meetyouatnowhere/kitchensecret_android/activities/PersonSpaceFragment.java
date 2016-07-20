@@ -24,14 +24,18 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.meetyouatnowhere.kitchensecret_android.MyApplication;
 import com.meetyouatnowhere.kitchensecret_android.R;
 import com.meetyouatnowhere.kitchensecret_android.activities.adapter.RecipeAdapter;
 import com.meetyouatnowhere.kitchensecret_android.bean.JsonTobean;
 import com.meetyouatnowhere.kitchensecret_android.bean.RecipeBean;
+import com.meetyouatnowhere.kitchensecret_android.bean.UserBean;
 import com.meetyouatnowhere.kitchensecret_android.util.GlobalParams;
+import com.meetyouatnowhere.kitchensecret_android.util.ImageFetcher;
 import com.meetyouatnowhere.kitchensecret_android.util.KitchenRestClient;
 import com.meetyouatnowhere.kitchensecret_android.util.ObjectPersistence;
 import com.meetyouatnowhere.kitchensecret_android.util.SharedPreferencesUtil;
@@ -42,6 +46,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -53,6 +58,9 @@ import java.util.List;
  */
 public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
     private static final String DISHES_DATA_PATH = "_recipe_data.bean";
+    private TextView name,birth,sex,email,desp;
+    private ImageView img;
+    ImageFetcher mImageFetcher;
     private List<RecipeBean> recipeList;
     private SwipeRefreshLayout swipeLayout;
     private ListView recipeListView;
@@ -97,7 +105,50 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_person_space, container, false);
+        View view=inflater.inflate(R.layout.fragment_person_space, container, false);
+        sp = getActivity().getSharedPreferences(GlobalParams.TAG_LOGIN_PREFERENCES, Context.MODE_PRIVATE);
+        isLogin = sp.getBoolean(SharedPreferencesUtil.TAG_IS_LOGIN, false);
+        Log.e("isLogin", String.valueOf(isLogin));
+        img=(ImageView)view.findViewById(R.id.photo_img);
+        mImageFetcher = new ImageFetcher(this.getActivity(), 140);
+        mImageFetcher.setLoadingImage(R.mipmap.default_avatar);
+        if (isLogin) {
+            name=(TextView)view.findViewById(R.id.name_tv);
+            birth=(TextView)view.findViewById(R.id.birth_tv);
+            sex=(TextView)view.findViewById(R.id.sex_tv);
+            email=(TextView)view.findViewById(R.id.email_tv);
+            desp=(TextView)view.findViewById(R.id.description_tv);
+            try{
+                UserBean user=MyApplication.getInstance().getUserBeanFromFile();
+                if(user.get_id()==null&&user.get_id()==""){
+                    isLogin=false;
+                    SharedPreferences.Editor editor=sp.edit();
+                    editor.putBoolean(SharedPreferencesUtil.TAG_IS_LOGIN, false);
+                    editor.apply();
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }
+                name.setText(user.getNickname());
+//                birth.setText(user.getBirth().toString());
+                sex.setText(user.getSex());
+                email.setText(user.getEmail());
+                desp.setText(user.getIntro());
+                mImageFetcher.loadImage("http://120.27.95.40:8000/"+user.getPhoto(),img);
+            }catch (Exception e){
+                isLogin=false;
+                SharedPreferences.Editor editor=sp.edit();
+                editor.putBoolean(SharedPreferencesUtil.TAG_IS_LOGIN, false);
+                editor.apply();
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                e.printStackTrace();
+            }
+        } else {
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+//            startActivityForResult(intent, request);
+        }
+        return view;
     }
 
     @Override
@@ -150,7 +201,6 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
         swipeLayout.setColorSchemeResources(android.R.color.holo_red_light,android.R.color.holo_green_light,android.R.color.holo_blue_bright,android.R.color.holo_orange_light);
         recipeListView = (ListView) getActivity().findViewById(R.id.recipeListView);
 
-        sp = getActivity().getSharedPreferences(GlobalParams.TAG_LOGIN_PREFERENCES, Context.MODE_PRIVATE);
 
         progress = new ProgressDialog(getActivity());
         progress.setMessage("Loading...");

@@ -7,14 +7,15 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.meetyouatnowhere.kitchensecret_android.MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:screenOrientation="portrait"
-        android:windowSoftInputMode="adjustPan|stateHidden">>
+        android:windowSoftInputMode="adjustPan|stateHidden">
+        >
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,22 +23,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.pulldown.PullToRefreshSampleActivity"/>
-        <activity android:name=".activities.LoginActivity"
-            android:parentActivityName=".activities.MainActivity"/>
-        <activity android:name=".activities.RegisterActivity"
-            android:parentActivityName=".activities.MainActivity"/>
+        <activity android:name=".activities.pulldown.PullToRefreshSampleActivity" />
+        <activity
+            android:name=".activities.LoginActivity"
+            android:parentActivityName=".activities.MainActivity"
+            android:launchMode="singleTop"/>
+        <activity
+            android:name=".activities.RegisterActivity"
+            android:parentActivityName=".activities.MainActivity" />
         <activity android:name=".activities.favorActivity" />
         <activity android:name=".activities.RecipeActivity" />
         <activity android:name=".activities.EditPersonalInfoActivity" />
-        <activity android:name=".activities.SettingActivity"
-            android:parentActivityName=".activities.MainActivity"/>
-        <activity android:name=".activities.Setting_detailActivity"
-            android:parentActivityName=".activities.SettingActivity"/><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <activity
+            android:name=".activities.SettingActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.Setting_detailActivity"
+            android:parentActivityName=".activities.SettingActivity" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".activities.SortResultActivity"
+            android:parentActivityName=".activities.MainActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -1,6 +1,8 @@
 package com.meetyouatnowhere.kitchensecret_android.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,6 +26,9 @@ import java.util.List;
 
 import com.meetyouatnowhere.kitchensecret_android.MyApplication;
 import com.meetyouatnowhere.kitchensecret_android.R;
+import com.meetyouatnowhere.kitchensecret_android.bean.UserBean;
+import com.meetyouatnowhere.kitchensecret_android.util.GlobalParams;
+import com.meetyouatnowhere.kitchensecret_android.util.SharedPreferencesUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,16 +45,18 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.tab_message,
             R.drawable.tab_mine
     };
-
+    SharedPreferences sp;
     private int request = 1;
     /*private Button btn_recipe;
     private Button btn_myCommunity;
     private Button btn_search;
     private Button btn_mySetting;*/
-
+private boolean isLogin;
+  private  UserBean user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sp = getSharedPreferences(GlobalParams.TAG_LOGIN_PREFERENCES, Context.MODE_PRIVATE);
         super.onCreate(savedInstanceState);
 
 
@@ -98,7 +105,19 @@ public class MainActivity extends AppCompatActivity {
         /////////////btn_clickListener
 
         init();
-
+        try{
+           user=MyApplication.getInstance().getUserBeanFromFile();
+            if(user.get_id()==null&&user.get_id()==""){
+                isLogin=false;
+                SharedPreferences.Editor editor=sp.edit();
+                editor.putBoolean(SharedPreferencesUtil.TAG_IS_LOGIN, false);
+                editor.apply();
+            }}catch (Exception e){
+                isLogin=false;
+                SharedPreferences.Editor editor=sp.edit();
+                editor.putBoolean(SharedPreferencesUtil.TAG_IS_LOGIN, false);
+                editor.apply();
+        }
     }
 
     private void init(){
@@ -183,6 +202,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        boolean isLogin=sp.getBoolean(SharedPreferencesUtil.TAG_IS_LOGIN, false);
+        Log.i("user",isLogin+"");
+        if(isLogin){
+            menu.getItem(0).setTitle(user.getNickname());
+            menu.getItem(0).setEnabled(false);
+            menu.getItem(3).setEnabled(true);
+            menu.getItem(4).setEnabled(true);
+        }else{
+            menu.getItem(0).setTitle("登录");
+            menu.getItem(0).setEnabled(true);
+            menu.getItem(3).setEnabled(false);
+            menu.getItem(4).setEnabled(false);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -204,6 +241,11 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, request);
             return true;
         }else if (id == R.id.exit_settings){
+            MyApplication.getInstance().clearUserBean();
+            isLogin=false;
+            SharedPreferences.Editor editor=sp.edit();
+            editor.putBoolean(SharedPreferencesUtil.TAG_IS_LOGIN, false);
+            editor.apply();
             return  true;
         }
 
