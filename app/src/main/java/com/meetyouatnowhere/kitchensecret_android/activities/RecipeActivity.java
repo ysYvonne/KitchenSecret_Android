@@ -34,6 +34,7 @@ import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -141,8 +142,48 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
         }
 
 
-        recipe_ingredient_tv.setText(recipeBean.getMeterials()[0].toString());
-        recipe_step_tv.setText(recipeBean.getSteps()[0].toString());
+//        recipe_ingredient_tv.setText(recipeBean.getMeterials()[0].toString());
+//        recipe_step_tv.setText(recipeBean.getSteps()[0].toString());
+//        recipe_labal_tv.setText("#" + recipeBean.getLabels().toString());
+//        recipe_difficulty_tv.setText("#" + recipeBean.getLevel().toString());
+        String ingredient = "";
+        String str1 = recipeBean.getMeterials()[0].toString();
+        JSONArray jsArray;
+        String name = null;
+        String amount = null;
+        try {
+            jsArray = new JSONArray(str1);
+            for(int i = 0; i <= jsArray.length(); i++){
+                JSONObject obj = jsArray.getJSONObject(i);
+                name = obj.getString("name");
+                amount = obj.getString("amount");
+                String temp = name + " " + amount;
+                i++;
+                ingredient = ingredient + "\n" + i + "  " + temp;
+                i--;
+            }
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+        recipe_ingredient_tv.setText(ingredient);
+        String steps = "";
+        String str2 = recipeBean.getSteps()[0].toString();
+        JSONArray jsArray2;
+        String detail = null;
+        try {
+            jsArray2 = new JSONArray(str2);
+            for(int i = 0; i <= jsArray2.length(); i++){
+                JSONObject obj = jsArray2.getJSONObject(i);
+                detail = obj.getString("detail");
+                String temp = detail;
+                i++;
+                steps= steps + "\n" + i + "  " + temp;
+                i--;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        recipe_step_tv.setText(steps);
 //        if(recipeBean.getRestaurant()==null || "".equals(recipeBean.getRestaurant().trim()) || "null".equals(recipeBean.getRestaurant().trim())){
 //            recipe_pay_rl.setVisibility(View.GONE);
 //        }else{

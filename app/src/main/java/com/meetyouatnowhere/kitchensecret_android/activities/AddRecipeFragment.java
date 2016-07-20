@@ -229,7 +229,10 @@ public class AddRecipeFragment extends Fragment implements View.OnClickListener 
         RequestParams params = new RequestParams();
         params.add("name", recipe_name);
         params.add("description", recipe_description);
-
+        params.add("calorie","1");
+        params.add("makeTime","2");
+        params.add("peopleNum","3");
+        params.add("steps","4");
         /*if(picturePath != null && "".equals(picturePath.trim())){
             picturePath = encodeBase64File("nn");
             try {
