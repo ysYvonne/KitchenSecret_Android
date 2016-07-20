@@ -1,12 +1,19 @@
 package com.meetyouatnowhere.kitchensecret_android;
 
 import android.app.Application;
+import android.content.Context;
 
+import com.meetyouatnowhere.kitchensecret_android.activities.ActivityStack;
 import com.meetyouatnowhere.kitchensecret_android.activities.LoginActivity;
 import com.meetyouatnowhere.kitchensecret_android.bean.UserBean;
 import com.meetyouatnowhere.kitchensecret_android.util.ObjectPersistence;
 
 public class MyApplication extends Application {
+
+    /** 上下文 */
+    protected Context mContext          = null;
+    /** Activity 栈 */
+    public ActivityStack mActivityStack = null;
 
     public static String token;
 
@@ -35,6 +42,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        mContext=getApplicationContext();
+        mActivityStack=new ActivityStack();
         //SDKInitializer.initialize(this);
     }
 

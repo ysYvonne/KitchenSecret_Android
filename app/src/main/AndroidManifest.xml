@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -24,6 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.pulldown.PullToRefreshSampleActivity" />
+        <activity android:name=".activities.CropActivity"/>
         <activity
             android:name=".activities.LoginActivity"
             android:parentActivityName=".activities.MainActivity"

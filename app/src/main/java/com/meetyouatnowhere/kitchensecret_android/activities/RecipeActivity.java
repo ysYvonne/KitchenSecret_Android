@@ -139,6 +139,8 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
             matrialAdapter.notifyDataSetChanged();
         }catch (IOException e){
             e.printStackTrace();
+        }catch (Exception e){
+
         }
 
 

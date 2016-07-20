@@ -68,7 +68,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
                         android:id="@+id/img_recipe_picture"
-                        android:background="@mipmap/uplode_pic"
+                        android:src="@mipmap/default_select_photo"
                         android:layout_gravity="center" />
 
                 </LinearLayout>

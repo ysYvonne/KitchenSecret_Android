@@ -4,9 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,110 +18,7 @@ import android.view.ViewGroup;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.meetyouatnowhere.kitchensecret_android.R;
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link AddRecipeFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link AddRecipeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-/*public class AddRecipeFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
-    public AddRecipeFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddRecipeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-   /* public static AddRecipeFragment newInstance(String param1, String param2) {
-        AddRecipeFragment fragment = new AddRecipeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_recipe, container, false);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    /*public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-}*/
-
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import com.meetyouatnowhere.kitchensecret_android.activities.basic.PictureSelectFragment;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -135,6 +35,14 @@ import com.meetyouatnowhere.kitchensecret_android.util.SharedPreferencesUtil;
 import org.apache.http.Header;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.UUID;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -142,7 +50,7 @@ import org.json.JSONObject;
  * Use the {@link PersonSpaceFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddRecipeFragment extends Fragment implements View.OnClickListener {
+public class AddRecipeFragment extends PictureSelectFragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -159,8 +67,16 @@ public class AddRecipeFragment extends Fragment implements View.OnClickListener 
     private ProgressDialog progress;
     private RecipeBean recipeBean;
     private String picturePath = null;
+    private Uri pictureUri=null;
     public static int KEY_ADD_DISH = 2;
 //    private OnFragmentInteractionListener mListener;
+
+
+    private static final String MULTIPART_FORM_DATA="multipart/form-data";
+    private static final String TWOHYPHENS = "--";
+    private static final String BOUNDARY = "---------------------------"+ UUID.randomUUID();
+    private static final String LINEEND = "\r\n";
+    private static final String FORMNAME="userfile";
 
     public AddRecipeFragment() {
         // Required empty public constructor
@@ -201,6 +117,38 @@ public class AddRecipeFragment extends Fragment implements View.OnClickListener 
         return view;
     }
 
+    @Override
+    protected int getContentViewId() {
+        return R.layout.fragment_add_recipe;
+    }
+
+    @Override
+    public void initViews(View view) {
+
+    }
+
+    @Override
+    public void initEvents() {
+        recipe_picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectPicture();
+            }
+        });
+        // 设置裁剪图片结果监听
+        setOnPictureSelectedListener(new OnPictureSelectedListener() {
+            @Override
+            public void onPictureSelected(Uri fileUri, Bitmap bitmap) {
+                recipe_picture.setImageBitmap(bitmap);
+
+                String filePath = fileUri.getEncodedPath();
+                String imagePath = Uri.decode(filePath);
+                picturePath=imagePath;
+                Toast.makeText(mContext, "图片已经保存到:" + imagePath, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     public void initView(View view) {
         recipe_name_et = (EditText) view.findViewById(R.id.recipeName_edit);
         recipe_description_et = (EditText) view.findViewById(R.id.recipeDescription_editText);
@@ -227,12 +175,18 @@ public class AddRecipeFragment extends Fragment implements View.OnClickListener 
 
     public void addRecipe(String recipe_name, String recipe_description) {
         RequestParams params = new RequestParams();
-        params.add("name", recipe_name);
-        params.add("description", recipe_description);
-        params.add("calorie","1");
-        params.add("makeTime","2");
-        params.add("peopleNum","3");
-        params.add("steps","4");
+        params.put("name", recipe_name);
+        params.put("description", recipe_description);
+        params.put("calorie","1");
+        params.put("makeTime","2");
+        params.put("peopleNum","3");
+        params.put("steps","4");
+        try{
+            params.put("picture",new File(picturePath));
+        }catch (Exception e){
+            Toast.makeText(getActivity(),"请上传图片",Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
         /*if(picturePath != null && "".equals(picturePath.trim())){
             picturePath = encodeBase64File("nn");
             try {
@@ -249,23 +203,34 @@ public class AddRecipeFragment extends Fragment implements View.OnClickListener 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 Log.e("add recipe", response.toString());
+                Toast.makeText(getActivity(), "上传成功！", Toast.LENGTH_SHORT).show();
                 if (progress.isShowing()) {
                     progress.dismiss();
                 }
                 if (statusCode == 201) {
                     try {
                         recipeBean = JsonTobean.getBean(RecipeBean.class, response.toString());
-                        Intent intent = new Intent();
+                        Intent intent = new Intent(getActivity(),RecipeActivity.class);
                         Bundle bundle = new Bundle();
-                        bundle.putSerializable("recipeBean", recipeBean);
+                        bundle.putSerializable("RecipeBean", recipeBean);
                         intent.putExtras(bundle);
-//                        setResult(KEY_ADD_DISH, intent);
+//                        startActivity(intent);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 } else {
                     Toast.makeText(getActivity(), "Adding recipe is wrong. Please try it again.", Toast.LENGTH_SHORT).show();
                 }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                if (progress.isShowing()) {
+                    progress.dismiss();
+                }
+                Log.e("upload",responseString);
+                Toast.makeText(getActivity(), "Adding recipe is wrong. Please try it again.", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -300,8 +265,9 @@ public class AddRecipeFragment extends Fragment implements View.OnClickListener 
                     addRecipe(recipe_name, recipe_description);
                 }
                 break;
-            case R.id.img_recipe_picture:
-                break;
+//            case R.id.img_recipe_picture:
+//                selectPicture();
+//                break;
             default:
                 break;
         }
