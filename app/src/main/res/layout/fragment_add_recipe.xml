@@ -66,7 +66,7 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="250dp"
+                        android:layout_height="180dp"
                         android:id="@+id/img_recipe_picture"
                         android:src="@mipmap/default_select_photo"
                         android:layout_gravity="center" />
@@ -78,7 +78,7 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="423dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/dish_description_ll"
                 android:layout_alignParentStart="true"
                 android:weightSum="1">
@@ -158,7 +158,30 @@
                         android:textSize="20sp"
                         android:id="@+id/recipeDescription_editText" />
                 </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="所需材料"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp" />
 
+                <ListView
+                    android:layout_width="wrap_content"
+                    android:layout_height="300dp"
+                    android:id="@+id/materials"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="步骤"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp" />
+
+                <ListView
+                    android:layout_width="wrap_content"
+                    android:layout_height="300dp"
+                    android:id="@+id/steps"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

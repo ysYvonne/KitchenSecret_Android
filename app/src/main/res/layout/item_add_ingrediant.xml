@@ -1,46 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@color/abc_background_cache_hint_selector_material_light"
-        android:orientation="vertical"
-        android:id="@+id/ingrediant_item">
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-
-            <TextView
-                android:id="@+id/addIngrediant"
-                android:text="@string/add_material"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusableInTouchMode="true"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_large" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:focusableInTouchMode="true"
-                android:gravity="center_vertical"
-                android:layout_alignParentRight="true"
-                android:id="@+id/add_ingrediant_btn"
-                android:background="@mipmap/add_btn" />
-        </RelativeLayout>
-
-        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@mipmap/login_input"
             android:orientation="horizontal"
@@ -52,16 +13,34 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp">
-
-                <EditText
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@null"
-                    android:focusableInTouchMode="true"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/edit_text_color"
-                    android:textSize="20sp"
-                    android:id="@+id/add_ingrediant_text" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="100"
+                        android:background="@null"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/edit_text_color"
+                        android:textSize="20sp"
+                        android:hint="名称"
+                        android:id="@+id/add_name_text" />
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="100"
+                        android:background="@null"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/edit_text_color"
+                        android:textSize="20sp"
+                        android:hint="用量"
+                        android:id="@+id/add_amount_text" />
+                </LinearLayout>
+
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -72,11 +51,20 @@
                     android:gravity="center_vertical"
                     android:id="@+id/cancel_ingrediant_btn"
                     android:background="@mipmap/cancel" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:id="@+id/add_ingrediant_btn"
+                    android:background="@mipmap/add_btn"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/cancel_ingrediant_btn" />
             </RelativeLayout>
 
 
-        </LinearLayout>
-
-    </LinearLayout>
-
 </LinearLayout>
+
+

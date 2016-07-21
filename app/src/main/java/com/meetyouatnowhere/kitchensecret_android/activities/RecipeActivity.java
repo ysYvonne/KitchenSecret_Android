@@ -22,6 +22,7 @@ import com.meetyouatnowhere.kitchensecret_android.R;
 import com.meetyouatnowhere.kitchensecret_android.bean.CommentBean;
 import com.meetyouatnowhere.kitchensecret_android.bean.JsonTobean;
 import com.meetyouatnowhere.kitchensecret_android.bean.LikeBean;
+import com.meetyouatnowhere.kitchensecret_android.bean.Material;
 import com.meetyouatnowhere.kitchensecret_android.bean.RecipeBean;
 import com.meetyouatnowhere.kitchensecret_android.bean.UserBean;
 import com.meetyouatnowhere.kitchensecret_android.util.AsynImageLoader;
@@ -130,19 +131,6 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
         } else {
             asynImageLoader.showImageAsyn(recipe_picture_img, pictureBaseUrl + recipeBean.getPhoto(), R.mipmap.default_recipe_picture);
         }
-
-        try{
-            String json=recipeBean.getMeterials()[0].toString();
-            List<Matrial> matrials=JsonTobean.getList(Matrial[].class,json);
-            MatrialAdapter matrialAdapter=new MatrialAdapter(this,matrials);
-            material_list.setAdapter(matrialAdapter);
-            matrialAdapter.notifyDataSetChanged();
-        }catch (IOException e){
-            e.printStackTrace();
-        }catch (Exception e){
-
-        }
-
 
 //        recipe_ingredient_tv.setText(recipeBean.getMeterials()[0].toString());
 //        recipe_step_tv.setText(recipeBean.getSteps()[0].toString());
@@ -404,115 +392,4 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
             isLogin = true;
         }
     }
-
-    public class MatrialAdapter extends BaseAdapter{
-        private Context mContext;
-        private List<Matrial> matrialList;
-
-        public MatrialAdapter(Context mContext, List<Matrial> matrialList) {
-            this.mContext = mContext;
-            this.matrialList = matrialList;
-        }
-
-        @Override
-        public int getCount() {
-            return matrialList.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-//
-//            try {
-//                matrialList=JsonTobean.getList(Matrial[].class,recipeBean.getMeterials()[0].toString());
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-            return matrialList.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder;
-            Matrial m=matrialList.get(position);
-            if (convertView == null) {
-                holder = new ViewHolder();
-                holder.name = new TextView(getApplicationContext());
-                holder.detail=new TextView(getApplicationContext());
-                convertView.setTag(holder);
-            }
-
-            holder=(ViewHolder)convertView.getTag();
-            holder.name.setText(m.getName());
-            holder.detail.setText(m.getAmount());
-            return convertView;
-        }
-
-        class ViewHolder {
-            TextView name;
-            TextView detail;
-        }
-    }
-
-    BaseAdapter StepAdapter=new BaseAdapter() {
-        @Override
-        public int getCount() {
-            return 0;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            return null;
-        }
-    };
-
-    public class Matrial implements Serializable {
-        private String name;
-        private String amount;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getAmount() {
-            return amount;
-        }
-
-        public void setAmount(String amount) {
-            this.amount = amount;
-        }
-    }
-    public class Step{
-        String detail;
-
-        public String getDetail() {
-            return detail;
-        }
-
-        public void setDetail(String detail) {
-            this.detail = detail;
-        }
-    }
 }
-
-
-
-

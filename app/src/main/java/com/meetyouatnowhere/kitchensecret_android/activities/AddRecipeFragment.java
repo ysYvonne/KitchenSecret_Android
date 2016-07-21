@@ -6,10 +6,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,14 +21,17 @@ import com.loopj.android.http.RequestParams;
 import com.meetyouatnowhere.kitchensecret_android.R;
 import com.meetyouatnowhere.kitchensecret_android.activities.basic.PictureSelectFragment;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
-import com.meetyouatnowhere.kitchensecret_android.R;
 import com.meetyouatnowhere.kitchensecret_android.bean.JsonTobean;
+import com.meetyouatnowhere.kitchensecret_android.bean.Material;
 import com.meetyouatnowhere.kitchensecret_android.bean.RecipeBean;
+import com.meetyouatnowhere.kitchensecret_android.bean.Step;
 import com.meetyouatnowhere.kitchensecret_android.util.GlobalParams;
 import com.meetyouatnowhere.kitchensecret_android.util.KitchenRestClient;
 import com.meetyouatnowhere.kitchensecret_android.util.SharedPreferencesUtil;
@@ -35,19 +39,16 @@ import com.meetyouatnowhere.kitchensecret_android.util.SharedPreferencesUtil;
 import org.apache.http.Header;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * to handle interaction events.
- * Use the {@link PersonSpaceFragment#newInstance} factory method to
+ * Use the {@link PersonSpaceFragment#} factory method to
  * create an instance of this fragment.
  */
 public class AddRecipeFragment extends PictureSelectFragment implements View.OnClickListener {
@@ -69,19 +70,64 @@ public class AddRecipeFragment extends PictureSelectFragment implements View.OnC
     private String picturePath = null;
     private Uri pictureUri=null;
     public static int KEY_ADD_DISH = 2;
-//    private OnFragmentInteractionListener mListener;
+    private ListView materials;
+    private ListView steps;
+    private MatrialAddViewAdapter matrialAddViewAdapter;
+    private StepAddViewAdapter stepAddViewAdapter;
 
+    //    private OnFragmentInteractionListener mListener;
+    List<Material> materialList=new ArrayList<Material>();
+    List<Step> stepList=new ArrayList<Step>();
 
     private static final String MULTIPART_FORM_DATA="multipart/form-data";
     private static final String TWOHYPHENS = "--";
     private static final String BOUNDARY = "---------------------------"+ UUID.randomUUID();
     private static final String LINEEND = "\r\n";
     private static final String FORMNAME="userfile";
-
+    private int ADD_M =1;
+    private int DEL_M =0;
+    private int ADD_S=3;
+    private int DEL_S=2;
     public AddRecipeFragment() {
         // Required empty public constructor
     }
 
+    Handler handler=new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if(msg.what== ADD_M){
+                materialList.add((Material) msg.obj);
+                Log.i("list","add"+materialList.toString());
+                matrialAddViewAdapter=new MatrialAddViewAdapter(getActivity());
+                materials.setAdapter(matrialAddViewAdapter);
+                matrialAddViewAdapter.notifyDataSetChanged();
+            }
+            if(msg.what== DEL_M){
+                int pos=msg.arg1;
+                materialList.remove(pos);
+                Log.i("list","remove"+materialList.toString());
+                matrialAddViewAdapter=new MatrialAddViewAdapter(getActivity());
+                materials.setAdapter(matrialAddViewAdapter);
+                matrialAddViewAdapter.notifyDataSetChanged();
+            }
+            if(msg.what== ADD_S){
+                stepList.add((Step) msg.obj);
+                Log.i("list","add"+stepList.toString());
+                stepAddViewAdapter=new StepAddViewAdapter(getActivity());
+                steps.setAdapter(stepAddViewAdapter);
+                stepAddViewAdapter.notifyDataSetChanged();
+            }
+            if(msg.what== DEL_S){
+                int pos=msg.arg1;
+                stepList.remove(pos);
+                Log.i("list","remove"+stepList.toString());
+                stepAddViewAdapter=new StepAddViewAdapter(getActivity());
+                steps.setAdapter(stepAddViewAdapter);
+                stepAddViewAdapter.notifyDataSetChanged();
+            }
+            return false;
+        }
+    });
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -154,7 +200,15 @@ public class AddRecipeFragment extends PictureSelectFragment implements View.OnC
         recipe_description_et = (EditText) view.findViewById(R.id.recipeDescription_editText);
         recipe_add_btn = (Button) view.findViewById(R.id.okay_btn);
         recipe_picture = (ImageView) view.findViewById(R.id.img_recipe_picture);
+        materials=(ListView)view.findViewById(R.id.materials);
+        materialList.add(new Material());
+        matrialAddViewAdapter=new MatrialAddViewAdapter(getActivity());
+        materials.setAdapter(matrialAddViewAdapter);
 
+        steps=(ListView)view.findViewById(R.id.steps);
+        stepList.add(new Step());
+        stepAddViewAdapter=new StepAddViewAdapter(getActivity());
+        steps.setAdapter(stepAddViewAdapter);
         recipe_add_btn.setOnClickListener(this);
         recipe_picture.setOnClickListener(this);
     }
@@ -270,6 +324,146 @@ public class AddRecipeFragment extends PictureSelectFragment implements View.OnC
 //                break;
             default:
                 break;
+        }
+    }
+
+    public class MatrialAddViewAdapter extends BaseAdapter{
+        private LayoutInflater mInflater;
+        private Context mContext;
+        private ViewHolder holder=null;
+        public MatrialAddViewAdapter(Context context) {
+            mInflater=LayoutInflater.from(context);
+            mContext = context;
+        }
+
+
+        @Override
+        public int getCount() {
+            Log.i("list",materialList.size()+"");
+            return materialList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return materialList.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+           if(convertView==null){
+               LayoutInflater layoutInflator = LayoutInflater.from(parent.getContext());
+               convertView=layoutInflator.inflate(R.layout.item_add_ingrediant,null);
+               holder=new ViewHolder();
+               holder.btn_add=(Button)convertView.findViewById(R.id.add_ingrediant_btn);
+               holder.btn_cancel=(Button)convertView.findViewById(R.id.cancel_ingrediant_btn);
+               holder.name_add=(EditText)convertView.findViewById(R.id.add_name_text);
+               holder.amount_add=(EditText)convertView.findViewById(R.id.add_amount_text);
+               convertView.setTag(holder);
+           }else{
+               holder=(ViewHolder)convertView.getTag();
+           }
+            holder.btn_add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Material m=new Material();
+                    m.setName(holder.name_add.getText().toString()+"");
+                    m.setAmount(holder.amount_add.getText().toString()+"");
+                    Message message=new Message();
+                    message.what= ADD_M;
+                    message.obj=m;
+                    handler.sendMessage(message);
+                }
+            });
+            holder.btn_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Message message=new Message();
+                    message.what= DEL_M;
+                    message.arg1=position;
+                    handler.sendMessage(message);
+                }
+            });
+            return convertView;
+        }
+
+        class ViewHolder {
+            EditText name_add;
+            EditText amount_add;
+            Button btn_add;
+            Button btn_cancel;
+        }
+    }
+
+    public class StepAddViewAdapter extends BaseAdapter{
+        private LayoutInflater mInflater;
+        private Context mContext;
+        private ViewHolder holder=null;
+
+        public StepAddViewAdapter(Context context) {
+            mInflater=LayoutInflater.from(context);
+            mContext = context;
+        }
+
+        @Override
+        public int getCount() {
+            return stepList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return stepList.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            if(convertView==null){
+                LayoutInflater layoutInflator = LayoutInflater.from(parent.getContext());
+                convertView=layoutInflator.inflate(R.layout.item_add_step,null);
+                holder=new ViewHolder();
+                holder.btn_add=(Button)convertView.findViewById(R.id.add_step_btn);
+                holder.btn_cancel=(Button)convertView.findViewById(R.id.cancel_step_btn);
+                holder.step_text=(EditText)convertView.findViewById(R.id.step_text);
+                convertView.setTag(holder);
+            }else{
+                holder=(ViewHolder)convertView.getTag();
+            }
+            holder.btn_add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Step s=new Step();
+                    s.setDetail(holder.step_text.getText().toString());
+                    Message message=new Message();
+                    message.what= ADD_S;
+                    message.obj=s;
+                    handler.sendMessage(message);
+                }
+            });
+            holder.btn_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Message message=new Message();
+                    message.what= DEL_S;
+                    message.arg1=position;
+                    handler.sendMessage(message);
+                }
+            });
+            return convertView;
+        }
+
+        class ViewHolder {
+            EditText step_text;
+            Button btn_add;
+            Button btn_cancel;
         }
     }
 }

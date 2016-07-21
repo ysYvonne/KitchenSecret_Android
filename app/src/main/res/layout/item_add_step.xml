@@ -1,82 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_gravity="center"
+    android:background="@mipmap/login_input"
+    android:orientation="horizontal"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="0dp"
+    android:layout_marginRight="10dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@color/abc_background_cache_hint_selector_material_light"
-        android:orientation="vertical"
-        android:id="@+id/steps_item">
+        android:layout_margin="10dp">
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-
-            <TextView
-                android:id="@+id/add_Steps"
-                android:text="@string/add_step"
+            <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="100"
+                android:background="@null"
                 android:focusableInTouchMode="true"
                 android:gravity="center_vertical"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_large" />
+                android:textColor="@color/edit_text_color"
+                android:textSize="20sp"
+                android:hint="步骤"
+                android:id="@+id/step_text" />
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:focusableInTouchMode="true"
-                android:gravity="center_vertical"
-                android:layout_alignParentRight="true"
-                android:id="@+id/add_steps_btn"
-                android:background="@mipmap/add_btn" />
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@mipmap/login_input"
-            android:orientation="horizontal"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginRight="10dp">
+            android:layout_alignParentRight="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:id="@+id/cancel_step_btn"
+            android:background="@mipmap/cancel" />
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:id="@+id/add_step_btn"
+            android:background="@mipmap/add_btn"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/cancel_step_btn" />
+    </RelativeLayout>
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@null"
-                    android:focusableInTouchMode="true"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/edit_text_color"
-                    android:textSize="20sp"
-                    android:id="@+id/add_steps_text" />
-
-                <Button
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_alignParentRight="true"
-                    android:focusableInTouchMode="true"
-                    android:gravity="center_vertical"
-                    android:id="@+id/cancel_steps_btn"
-                    android:background="@mipmap/cancel"  />
-            </RelativeLayout>
-
-
-        </LinearLayout>
-
-    </LinearLayout>
 
 </LinearLayout>
