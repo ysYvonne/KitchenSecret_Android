@@ -67,22 +67,22 @@ public class SortResultActivity extends AppCompatActivity{
 
 
         Intent intent = getIntent();
-        recipeAdapter=(RecipeAdapter)intent.getSerializableExtra("Adapter");
+        //recipeAdapter=(RecipeAdapter)intent.getSerializableExtra("Adapter");
 
-        swipeLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh_sort);
-        swipeLayout.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) this);
+        //swipeLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh_sort);
+        //swipeLayout.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) this);
         //加载颜色是循环播放的，只要没有完成刷新就会一直循环，color1>color2>color3>color4
-        swipeLayout.setColorSchemeResources(android.R.color.holo_red_light,android.R.color.holo_green_light,android.R.color.holo_blue_bright,android.R.color.holo_orange_light);
+        //swipeLayout.setColorSchemeResources(android.R.color.holo_red_light,android.R.color.holo_green_light,android.R.color.holo_blue_bright,android.R.color.holo_orange_light);
 
         recipeListView = (ListView)findViewById(R.id.sort_lView);
 
-        sp = getSharedPreferences(GlobalParams.TAG_LOGIN_PREFERENCES, Context.MODE_PRIVATE);
+        //sp = getSharedPreferences(GlobalParams.TAG_LOGIN_PREFERENCES, Context.MODE_PRIVATE);
 
-        progress = new ProgressDialog(this);
-        progress.setMessage("Loading...");
-        progress.show();
+        //progress = new ProgressDialog(this);
+        //progress.setMessage("Loading...");
+        //progress.show();
 
-
+        recipeAdapter=SortFragment.recipeAdapter;
         recipeListView.setAdapter(recipeAdapter);
         recipeAdapter.notifyDataSetChanged();
 
@@ -123,8 +123,8 @@ public class SortResultActivity extends AppCompatActivity{
 
                     }*/
 
-                //searchRecipeList.add(recipeBean);
-               // }
+    //searchRecipeList.add(recipeBean);
+    // }
 /*}
             if (searchRecipeList != null && searchRecipeList.size() > 0) {
                 if (recipeAdapter.mRecipeList != null && recipeAdapter.mRecipeList.size() > 0) {

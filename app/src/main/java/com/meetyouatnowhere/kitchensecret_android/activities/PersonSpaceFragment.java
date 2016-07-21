@@ -2,14 +2,11 @@ package com.meetyouatnowhere.kitchensecret_android.activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
@@ -21,7 +18,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -46,7 +42,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -61,10 +56,10 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
     private TextView name,birth,sex,email,desp;
     private ImageView img;
     ImageFetcher mImageFetcher;
-    private List<RecipeBean> recipeList;
+    private List<RecipeBean> myRecipeList;
     private SwipeRefreshLayout swipeLayout;
     private ListView recipeListView;
-    private RecipeAdapter recipeAdapter;
+    private RecipeAdapter myRecipeAdapter;
     private ProgressDialog progress;
     private boolean isRefresh = false;
     private Button addRecipe_btn;
@@ -82,15 +77,19 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
     private int request = 1;
     private RecipeBean recipeAddBean; // the recipe added by user
     private SharedPreferences sp;
-    private int GET_DATA_SUCCESS=1;
+    private int GET_DATA_SUCCESS=2;
+    private String userid;
+    private String username;
+    private String password;
     Handler handler=new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
             if(msg.what==GET_DATA_SUCCESS){
-                List<RecipeBean> recipeBeanList=(List<RecipeBean>) msg.obj;
-                recipeAdapter = new RecipeAdapter(getActivity(), recipeBeanList);
-                recipeListView.setAdapter(recipeAdapter);
-                recipeAdapter.notifyDataSetChanged();
+                List<RecipeBean> recipeBeens= (List<RecipeBean>) msg.obj;
+                myRecipeAdapter = new RecipeAdapter(getActivity(), false);
+                myRecipeAdapter.mRecipeList.addAll(recipeBeens);
+                recipeListView.setAdapter(myRecipeAdapter);
+                myRecipeAdapter.notifyDataSetChanged();
                 return true;
             }
             return false;
@@ -128,11 +127,15 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
                     startActivity(intent);
                 }
+                userid=user.get_id();
+                username=user.getEmail();
+                password=user.getPassword();
                 name.setText(user.getNickname());
 //                birth.setText(user.getBirth().toString());
                 sex.setText(user.getSex());
                 email.setText(user.getEmail());
                 desp.setText(user.getIntro());
+                mImageFetcher.setLoadingImage(R.mipmap.default_avatar2);
                 mImageFetcher.loadImage("http://120.27.95.40:8000/"+user.getPhoto(),img);
             }catch (Exception e){
                 isLogin=false;
@@ -200,7 +203,8 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
         //加载颜色是循环播放的，只要没有完成刷新就会一直循环，color1>color2>color3>color4
         swipeLayout.setColorSchemeResources(android.R.color.holo_red_light,android.R.color.holo_green_light,android.R.color.holo_blue_bright,android.R.color.holo_orange_light);
         recipeListView = (ListView) getActivity().findViewById(R.id.recipeListView);
-
+        myRecipeAdapter =new RecipeAdapter(getActivity(),false);
+        recipeListView.setAdapter(myRecipeAdapter);
 
         progress = new ProgressDialog(getActivity());
         progress.setMessage("Loading...");
@@ -254,21 +258,21 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
 
     public void getSearchRecipeList() {
         searchRecipeList = new ArrayList<>();
-        if (recipeList != null && recipeList.size() > 0) {
-            for (int i = 0; i < recipeList.size(); i++) {
-                RecipeBean recipeBean = recipeList.get(i);
+        if (myRecipeList != null && myRecipeList.size() > 0) {
+            for (int i = 0; i < myRecipeList.size(); i++) {
+                RecipeBean recipeBean = myRecipeList.get(i);
                 if (recipeBean.getName().contains(search_content) || search_content.contains(recipeBean.getName())) {
                     searchRecipeList.add(recipeBean);
                 }
             }
             if (searchRecipeList != null && searchRecipeList.size() > 0) {
-                if (recipeAdapter.mRecipeList != null && recipeAdapter.mRecipeList.size() > 0) {
-                    recipeAdapter.mRecipeList.clear();
+                if (myRecipeAdapter.mRecipeList != null && myRecipeAdapter.mRecipeList.size() > 0) {
+                    myRecipeAdapter.mRecipeList.clear();
                 }
-                recipeAdapter.mRecipeList.addAll(searchRecipeList);
+                myRecipeAdapter.mRecipeList.addAll(searchRecipeList);
                 sendData(searchRecipeList);
-//                recipeListView.setAdapter(recipeAdapter);
-//                recipeAdapter.notifyDataSetChanged();
+//                recipeListView.setAdapter(myRecipeAdapter);
+//                myRecipeAdapter.notifyDataSetChanged();
             } else {
                 // search result no recipe.
                 search_et.setText("");
@@ -312,7 +316,7 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
     }
 
     public void getAllRecipees() {
-        KitchenRestClient.get("recipe", null, new JsonHttpResponseHandler() {
+        KitchenRestClient.getWithLogin("getownrecipe/"+userid,null, username,password, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 Log.e("recipe", response.toString());
@@ -321,42 +325,42 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
                 }
                 if (statusCode == 200) {
                     try {
-                        recipeList = JsonTobean.getList(RecipeBean[].class, response.toString());
-                        Collections.reverse(recipeList);
-                        ObjectPersistence.writeObjectToFile(mContext, recipeList, DISHES_DATA_PATH);
+                        myRecipeList = JsonTobean.getList(RecipeBean[].class, response.toString());
+                        Collections.reverse(myRecipeList);
+                        ObjectPersistence.writeObjectToFile(mContext, myRecipeList, DISHES_DATA_PATH);
                         if (isRefresh) {
-                            //recipeAdapter = new RecipeAdapter(getActivity(), recipeList);
-                            if (recipeAdapter.mRecipeList != null && recipeAdapter.mRecipeList.size() > 0) {
-                                recipeAdapter.mRecipeList.clear();
+                            //myRecipeAdapter = new RecipeAdapter(getActivity(), myRecipeList);
+                            if (myRecipeAdapter.mRecipeList != null && myRecipeAdapter.mRecipeList.size() > 0) {
+                                myRecipeAdapter.mRecipeList.clear();
                             }
-                            recipeAdapter.mRecipeList.addAll(recipeList);
+//                            myRecipeAdapter.mRecipeList.addAll(myRecipeList);
                             isRefresh = false;
                         } else {
-                            recipeAdapter = new RecipeAdapter(mContext, false);
-                            recipeAdapter.mRecipeList.addAll(recipeList);
+                            myRecipeAdapter = new RecipeAdapter(mContext, false);
+                            myRecipeAdapter.mRecipeList.addAll(myRecipeList);
                         }
-                        sendData(recipeList);
-//                        recipeListView.setAdapter(recipeAdapter);
-//                        recipeAdapter.notifyDataSetChanged();
+                        sendData(myRecipeList);
+//                        recipeListView.setAdapter(myRecipeAdapter);
+//                        myRecipeAdapter.notifyDataSetChanged();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 } else {
                     getLocalRecipeesData();
-                    if (recipeList != null && recipeList.size() > 0) {
+                    if (myRecipeList != null && myRecipeList.size() > 0) {
                         if (isRefresh) {
-                            if (recipeAdapter.mRecipeList != null && recipeAdapter.mRecipeList.size() > 0) {
-                                recipeAdapter.mRecipeList.clear();
+                            if (myRecipeAdapter.mRecipeList != null && myRecipeAdapter.mRecipeList.size() > 0) {
+                                myRecipeAdapter.mRecipeList.clear();
                             }
-                            recipeAdapter.mRecipeList.addAll(recipeList);
+                            myRecipeAdapter.mRecipeList.addAll(myRecipeList);
                             isRefresh = false;
                         } else {
-                            recipeAdapter = new RecipeAdapter(mContext, false);
-                            recipeAdapter.mRecipeList.addAll(recipeList);
+                            myRecipeAdapter = new RecipeAdapter(mContext, false);
+                            myRecipeAdapter.mRecipeList.addAll(myRecipeList);
                         }
-                        sendData(recipeList);
-//                        recipeListView.setAdapter(recipeAdapter);
-//                        recipeAdapter.notifyDataSetChanged();
+                        sendData(myRecipeList);
+//                        recipeListView.setAdapter(myRecipeAdapter);
+//                        myRecipeAdapter.notifyDataSetChanged();
                     } else {
                         Toast.makeText(mContext, "Network kitchendemo is wrong.", Toast.LENGTH_SHORT).show();
                     }
@@ -369,20 +373,20 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
                     progress.dismiss();
                 }
                 getLocalRecipeesData();
-                if (recipeList != null && recipeList.size() > 0) {
+                if (myRecipeList != null && myRecipeList.size() > 0) {
                     if (isRefresh) {
-                        if (recipeAdapter.mRecipeList != null && recipeAdapter.mRecipeList.size() > 0) {
-                            recipeAdapter.mRecipeList.clear();
+                        if (myRecipeAdapter.mRecipeList != null && myRecipeAdapter.mRecipeList.size() > 0) {
+                            myRecipeAdapter.mRecipeList.clear();
                         }
-                        recipeAdapter.mRecipeList.addAll(recipeList);
+                        myRecipeAdapter.mRecipeList.addAll(myRecipeList);
                         isRefresh = false;
                     } else {
-                        recipeAdapter = new RecipeAdapter(mContext, false);
-                        recipeAdapter.mRecipeList.addAll(recipeList);
+                        myRecipeAdapter = new RecipeAdapter(mContext, false);
+                        myRecipeAdapter.mRecipeList.addAll(myRecipeList);
                     }
-                    sendData(recipeList);
-//                    recipeListView.setAdapter(recipeAdapter);
-//                    recipeAdapter.notifyDataSetChanged();
+                    sendData(myRecipeList);
+//                    recipeListView.setAdapter(myRecipeAdapter);
+//                    myRecipeAdapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(mContext, "Network kitchendemo is wrong.", Toast.LENGTH_SHORT).show();
                 }
@@ -390,10 +394,11 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
         });
     }
 
+
     private void getLocalRecipeesData() {
         List<RecipeBean> localRecipeList = (List<RecipeBean>) ObjectPersistence.readObjectFromFile(mContext, DISHES_DATA_PATH);
         if (localRecipeList != null) {
-            recipeList = localRecipeList;
+            myRecipeList = localRecipeList;
         }
     }
 }

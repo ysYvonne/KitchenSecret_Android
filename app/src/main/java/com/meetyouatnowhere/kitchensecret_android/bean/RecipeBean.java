@@ -1,5 +1,7 @@
 package com.meetyouatnowhere.kitchensecret_android.bean;
 
+import android.text.BoringLayout;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -25,6 +27,13 @@ public class RecipeBean implements Serializable {
     private String peopleNum;
     private String makeTime;
     private String calorie;
+    private Boolean noMeat;
+    private Boolean noSugar;
+    private Boolean lowFat;
+    private Boolean lowCal;
+    private Boolean lowLactose;
+    private Boolean spicy;
+
     public int getFavorateNum() {
         return favorateNum;
     }
@@ -144,4 +153,16 @@ public class RecipeBean implements Serializable {
     public void setCalorie(String calorie) {
         this.calorie = calorie;
     }
+
+    public Boolean getLowFat(){return lowFat;}
+
+    public Boolean getSpicy(){return spicy;}
+
+    public Boolean getNoSugar(){return noSugar;}
+
+    public Boolean getLowCal(){return lowCal;}
+
+    public Boolean getNoMeat(){return noMeat;}
+
+    public Boolean getLowLactose(){return lowLactose;}
 }

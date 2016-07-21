@@ -1,7 +1,6 @@
 package com.meetyouatnowhere.kitchensecret_android.activities;
 
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -16,18 +15,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,7 +33,6 @@ import com.meetyouatnowhere.kitchensecret_android.bean.RecipeBean;
 import com.meetyouatnowhere.kitchensecret_android.util.GlobalParams;
 import com.meetyouatnowhere.kitchensecret_android.util.KitchenRestClient;
 import com.meetyouatnowhere.kitchensecret_android.util.ObjectPersistence;
-import com.meetyouatnowhere.kitchensecret_android.util.SharedPreferencesUtil;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
@@ -52,8 +42,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.meetyouatnowhere.kitchensecret_android.R;
-
 public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,7 +50,7 @@ public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     private static final String DISHES_DATA_PATH = "_recipe_data.bean";
     private List<RecipeBean> recipeList;
-    private RecipeAdapter recipeAdapter;
+    private RecipeAdapter search_recipeAdapter;
     private ListView recipeListView;
     private SwipeRefreshLayout swipeLayout;
 
@@ -91,14 +79,14 @@ public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRef
     private String mParam2;
     private int GET_DATA_SUCCESS=1;
 //    private OnFragmentInteractionListener mListener;
-Handler handler=new Handler(new Handler.Callback() {
+    Handler handler=new Handler(new Handler.Callback() {
     @Override
     public boolean handleMessage(Message msg) {
         if(msg.what==GET_DATA_SUCCESS){
-            List<RecipeBean> recipeBeanList=(List<RecipeBean>) msg.obj;
-            recipeAdapter = new RecipeAdapter(getActivity(), recipeBeanList);
-            recipeListView.setAdapter(recipeAdapter);
-            recipeAdapter.notifyDataSetChanged();
+            List<RecipeBean> beanList= (List<RecipeBean>) msg.obj;
+            search_recipeAdapter.mRecipeList.addAll(beanList);
+            recipeListView.setAdapter(search_recipeAdapter);
+            search_recipeAdapter.notifyDataSetChanged();
             return true;
         }
         return false;
@@ -133,53 +121,18 @@ Handler handler=new Handler(new Handler.Callback() {
         message.what=GET_DATA_SUCCESS;
         handler.sendMessage(message);
     }
-    @Override
-    public void onAttach(Context context) {
-        Log.i(TAG,"onAttach");
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onStart() {
-        Log.i(TAG,"onStart");
-        super.onStart();
-    }
-
-    @Override
-    public void onResume() {
-        Log.i(TAG,"onResume");
-        super.onResume();
-    }
-
-    @Override
-    public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
-        Log.i(TAG,"onInflate");
-        super.onInflate(context, attrs, savedInstanceState);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        Log.i(TAG,"onViewCreated");
-        super.onViewCreated(view, savedInstanceState);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         Log.i(TAG,"onCreateView");
-        return inflater.inflate(R.layout.fragment_search, container, false);
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        Log.i(TAG, "onActivityCreated");
-        super.onActivityCreated(savedInstanceState);
+        View view=inflater.inflate(R.layout.fragment_search, container, false);
         mContext = getActivity();
 
         searchIconDefault = R.mipmap.search_icon;
         searchIconClear = R.mipmap.search_delete;
-        search_btn = (Button) getActivity().findViewById(R.id.search_button);
-        search_et = (EditText) getActivity().findViewById(R.id.et_search);
+        search_btn = (Button) view.findViewById(R.id.search_button);
+        search_et = (EditText) view.findViewById(R.id.et_search);
         search_et.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -214,12 +167,13 @@ Handler handler=new Handler(new Handler.Callback() {
 
         search_btn.setOnClickListener(this);
 
-        swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swipe_refresh_recipe);
+        swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_search_recipe);
         swipeLayout.setOnRefreshListener(this);
         //加载颜色是循环播放的，只要没有完成刷新就会一直循环，color1>color2>color3>color4
         swipeLayout.setColorSchemeResources(android.R.color.holo_red_light,android.R.color.holo_green_light,android.R.color.holo_blue_bright,android.R.color.holo_orange_light);
-        recipeListView = (ListView) getActivity().findViewById(R.id.history_lView);
-
+        recipeListView = (ListView) view.findViewById(R.id.history_lView);
+        search_recipeAdapter =new RecipeAdapter(getActivity(),false);
+        recipeListView.setAdapter(search_recipeAdapter);
         sp = getActivity().getSharedPreferences(GlobalParams.TAG_LOGIN_PREFERENCES, Context.MODE_PRIVATE);
 
         progress = new ProgressDialog(getActivity());
@@ -227,6 +181,14 @@ Handler handler=new Handler(new Handler.Callback() {
         progress.show();
 
         getAllRecipees();
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        Log.i(TAG, "onActivityCreated");
+        super.onActivityCreated(savedInstanceState);
+
     }
 
 
@@ -271,10 +233,11 @@ Handler handler=new Handler(new Handler.Callback() {
                 }
             }
             if (searchRecipeList != null && searchRecipeList.size() > 0) {
-                if (recipeAdapter.mRecipeList != null && recipeAdapter.mRecipeList.size() > 0) {
-                    recipeAdapter.mRecipeList.clear();
+                if (search_recipeAdapter.mRecipeList != null && search_recipeAdapter.mRecipeList.size() > 0) {
+                    search_recipeAdapter.mRecipeList.clear();
                 }
-                recipeAdapter.mRecipeList.addAll(searchRecipeList);
+                search_recipeAdapter.mRecipeList.addAll(searchRecipeList);
+                search_recipeAdapter.notifyDataSetChanged();
                 sendData(searchRecipeList);
             } else {
                 // search result no recipe.
@@ -325,18 +288,20 @@ Handler handler=new Handler(new Handler.Callback() {
                         Collections.reverse(recipeList);
                         ObjectPersistence.writeObjectToFile(mContext, recipeList, DISHES_DATA_PATH);
                         if (isRefresh) {
-                            //recipeAdapter = new RecipeAdapter(getActivity(), recipeList);
-                            if (recipeAdapter.mRecipeList != null && recipeAdapter.mRecipeList.size() > 0) {
-                                recipeAdapter.mRecipeList.clear();
+                            //search_recipeAdapter = new RecipeAdapter(getActivity(), recipeList);
+                            if (search_recipeAdapter.mRecipeList != null && search_recipeAdapter.mRecipeList.size() > 0) {
+                                search_recipeAdapter.mRecipeList.clear();
                             }
-                            recipeAdapter.mRecipeList.addAll(recipeList);
+                            search_recipeAdapter.mRecipeList.addAll(recipeList);
+                            search_recipeAdapter.notifyDataSetChanged();
                             isRefresh = false;
+
                         } else {
-                            recipeAdapter = new RecipeAdapter(mContext, false);
-                            recipeAdapter.mRecipeList.addAll(recipeList);
+                            search_recipeAdapter = new RecipeAdapter(mContext, false);
+                            search_recipeAdapter.mRecipeList.addAll(recipeList);
+                            search_recipeAdapter.notifyDataSetChanged();
                         }
-                        recipeListView.setAdapter(recipeAdapter);
-                        recipeAdapter.notifyDataSetChanged();
+                        sendData(recipeList);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -344,17 +309,18 @@ Handler handler=new Handler(new Handler.Callback() {
                     getLocalRecipeesData();
                     if (recipeList != null && recipeList.size() > 0) {
                         if (isRefresh) {
-                            if (recipeAdapter.mRecipeList != null && recipeAdapter.mRecipeList.size() > 0) {
-                                recipeAdapter.mRecipeList.clear();
+                            if (search_recipeAdapter.mRecipeList != null && search_recipeAdapter.mRecipeList.size() > 0) {
+                                search_recipeAdapter.mRecipeList.clear();
                             }
-                            recipeAdapter.mRecipeList.addAll(recipeList);
+                            search_recipeAdapter.mRecipeList.addAll(recipeList);
+                            search_recipeAdapter.notifyDataSetChanged();
                             isRefresh = false;
                         } else {
-                            recipeAdapter = new RecipeAdapter(mContext, false);
-                            recipeAdapter.mRecipeList.addAll(recipeList);
+                            search_recipeAdapter = new RecipeAdapter(mContext, false);
+                            search_recipeAdapter.mRecipeList.addAll(recipeList);
+                            search_recipeAdapter.notifyDataSetChanged();
                         }
-                        recipeListView.setAdapter(recipeAdapter);
-                        recipeAdapter.notifyDataSetChanged();
+                        sendData(recipeList);
                     } else {
                         Toast.makeText(mContext, "网络挂掉了嘤嘤", Toast.LENGTH_SHORT).show();
                     }
@@ -369,17 +335,18 @@ Handler handler=new Handler(new Handler.Callback() {
                 getLocalRecipeesData();
                 if (recipeList != null && recipeList.size() > 0) {
                     if (isRefresh) {
-                        if (recipeAdapter.mRecipeList != null && recipeAdapter.mRecipeList.size() > 0) {
-                            recipeAdapter.mRecipeList.clear();
+                        if (search_recipeAdapter.mRecipeList != null && search_recipeAdapter.mRecipeList.size() > 0) {
+                            search_recipeAdapter.mRecipeList.clear();
                         }
-                        recipeAdapter.mRecipeList.addAll(recipeList);
+                        search_recipeAdapter.mRecipeList.addAll(recipeList);
+                        search_recipeAdapter.notifyDataSetChanged();
                         isRefresh = false;
                     } else {
-                        recipeAdapter = new RecipeAdapter(mContext, false);
-                        recipeAdapter.mRecipeList.addAll(recipeList);
+                        search_recipeAdapter = new RecipeAdapter(mContext, false);
+                        search_recipeAdapter.mRecipeList.addAll(recipeList);
+                        search_recipeAdapter.notifyDataSetChanged();
                     }
-                    recipeListView.setAdapter(recipeAdapter);
-                    recipeAdapter.notifyDataSetChanged();
+                    sendData(recipeList);
                 } else {
                     Toast.makeText(mContext, "网络挂掉了嘤嘤嘤", Toast.LENGTH_SHORT).show();
                 }

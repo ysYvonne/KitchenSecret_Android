@@ -81,7 +81,7 @@ public class SortFragment extends Fragment {
 
     private static final String DISHES_DATA_PATH = "_recipe_data.bean";
     private List<RecipeBean> recipeList;
-    private RecipeAdapter recipeAdapter;
+    public static RecipeAdapter recipeAdapter;
 
     private boolean isRefresh = false;
     private ProgressDialog progress;
@@ -696,42 +696,69 @@ public class SortFragment extends Fragment {
         if (recipeList != null && recipeList.size() > 0) {
             for (int i = 0; i < recipeList.size(); i++) {
                 RecipeBean recipeBean = recipeList.get(i);
-                if ((sort!=-1 && difficulty != -1 && preference == 0)){
+
+                if ((sort!=-1 && difficulty != -1)){
                     if(recipeBean.getLabels().equals(sortArray[sort])){
                         if(recipeBean.getLevel().equals(difficultyArray[difficulty])){
+                            if(preference == 0)
+                                searchRecipeList.add(recipeBean);
+                            else{//如果选择饮食偏好
+                                if(preferenceArray[0] != "" && recipeBean.getNoMeat()
+                                        || preferenceArray[1] != "" && recipeBean.getNoSugar()
+                                        ||preferenceArray[2] != "" && recipeBean.getLowCal()
+                                        ||preferenceArray[3] != "" && recipeBean.getLowFat()
+                                        ||preferenceArray[4]!= "" && recipeBean.getSpicy()
+                                        ||preferenceArray[5]!=""&& recipeBean.getLowLactose()){
+                                    searchRecipeList.add(recipeBean);
+                                }
+                            }
+                        }
+                    }
+                }else if((sort!=-1 && difficulty == -1) && (recipeBean.getLabels().equals(sortArray[sort]))) {
+                    if(preference == 0)
+                        searchRecipeList.add(recipeBean);
+                    else{//如果选择饮食偏好
+                        if(preferenceArray[0] != "" && recipeBean.getNoMeat()
+                                || preferenceArray[1] != "" && recipeBean.getNoSugar()
+                                ||preferenceArray[2] != "" && recipeBean.getLowCal()
+                                ||preferenceArray[3] != "" && recipeBean.getLowFat()
+                                ||preferenceArray[4]!= "" && recipeBean.getSpicy()
+                                ||preferenceArray[5]!=""&& recipeBean.getLowLactose()){
                             searchRecipeList.add(recipeBean);
                         }
                     }
-                }else if((sort!=-1 && difficulty == -1 && preference == 0) && (recipeBean.getLabels() == sortArray[sort])) {
-                    searchRecipeList.add(recipeBean);
-                }else if((difficulty!=-1 && sort == -1 && preference == 0) && (recipeBean.getLevel() == difficultyArray[difficulty])) {
-                    searchRecipeList.add(recipeBean);
+                }else if((difficulty!=-1 && sort == -1) && (recipeBean.getLevel().equals(difficultyArray[difficulty]))) {
+                    if(preference == 0)
+                        searchRecipeList.add(recipeBean);
+                    else{//如果选择饮食偏好
+                        if(preferenceArray[0] != "" && recipeBean.getNoMeat()
+                                || preferenceArray[1] != "" && recipeBean.getNoSugar()
+                                ||preferenceArray[2] != "" && recipeBean.getLowCal()
+                                ||preferenceArray[3] != "" && recipeBean.getLowFat()
+                                ||preferenceArray[4]!= "" && recipeBean.getSpicy()
+                                ||preferenceArray[5]!=""&& recipeBean.getLowLactose()){
+                            searchRecipeList.add(recipeBean);
+                        }
+                    }
                 }
 
-               /*if(preference != 0){
-                        if(preferenceArray[0] != "" && recipeBean.)
-
-                    }*/
-
-                //searchRecipeList.add(recipeBean);
-                // }
             }
             if (searchRecipeList != null && searchRecipeList.size() > 0) {
                 if (recipeAdapter.mRecipeList != null && recipeAdapter.mRecipeList.size() > 0) {
                     recipeAdapter.mRecipeList.clear();
                 }
-                Toast.makeText(this.getActivity(), "啊啊啊啊啊啊啊啊啊啊啊啊啊啊", Toast.LENGTH_LONG).show();
+                // Toast.makeText(this.getActivity(), "啊啊啊啊啊啊啊啊啊啊啊啊啊啊", Toast.LENGTH_LONG).show();
                 recipeAdapter.mRecipeList.addAll(searchRecipeList);
 
                 Intent intent = new Intent(getActivity(),SortResultActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("Adapter",recipeAdapter);
-                intent.putExtras(bundle);
+                //Bundle bundle = new Bundle();
+                // bundle.putSerializable("Adapter",recipeAdapter);
+                //intent.putExtras(bundle);
                 startActivity(intent);
 
 
                 //recipeListView.setAdapter(recipeAdapter);
-               // recipeAdapter.notifyDataSetChanged();
+                // recipeAdapter.notifyDataSetChanged();
             } else {
                 // search result no recipe.
                 Toast.makeText(this.getActivity(), "我们找不到要搜索的结果...再试一次吧.", Toast.LENGTH_LONG).show();

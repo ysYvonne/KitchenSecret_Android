@@ -7,6 +7,11 @@ public class Material {
     private String name;
     private String amount;
 
+    public Material(){
+        name="";
+        amount="";
+    }
+
     public String getName() {
         return name;
     }

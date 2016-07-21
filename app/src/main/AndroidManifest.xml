@@ -14,6 +14,7 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:largeHeap="true"
         android:windowSoftInputMode="adjustPan|stateHidden">
         >
         <activity android:name=".activities.MainActivity">

@@ -95,7 +95,7 @@
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/labal1"
+                            android:id="@+id/recipe_labal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
@@ -106,7 +106,7 @@
                             android:layout_toEndOf="@+id/ll_dish_favor" />
 
                         <TextView
-                            android:id="@+id/labal2"
+                            android:id="@+id/recipe_difficulty"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"

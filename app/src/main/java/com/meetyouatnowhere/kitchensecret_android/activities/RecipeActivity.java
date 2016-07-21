@@ -55,7 +55,7 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
     private ImageView recipe_picture_img, recipe_favor_img;
     private ListView material_list;
     private LinearLayout recipe_favor_ll, recipe_comment_ll;
-    private TextView recipe_name_tv, recipe_description_tv, recipe_ingredient_tv, recipe_step_tv;
+    private TextView recipe_name_tv, recipe_description_tv, recipe_ingredient_tv, recipe_step_tv,recipe_labal_tv,recipe_difficulty_tv;
     private TextView favor_num_tv, comment_num_tv;
     private List<LikeBean> likeList;
     private List<CommentBean> commentList;
@@ -102,19 +102,12 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
         recipe_favor_ll = (LinearLayout) this.findViewById(R.id.ll_dish_favor);
 //        recipe_comment_ll = (LinearLayout) this.findViewById(R.id.ll_dish_comment);
         favor_num_tv = (TextView) this.findViewById(R.id.tv_favor_num);
+        recipe_labal_tv = (TextView)this.findViewById(R.id.recipe_labal);
+        recipe_difficulty_tv = (TextView)this.findViewById(R.id.recipe_difficulty);
+
 //        material_list=(ListView)this.findViewById(R.id.material_list);
 //        comment_num_tv = (TextView) this.findViewById(R.id.tv_dish_num);
         //       back_btn = (Button) this.findViewById(R.id.btn_back);
-
-//        recipe_pay_rl = (RelativeLayout) this.findViewById(R.id.recipe_pay_rl);
-//        recipe_count_tv = (TextView) this.findViewById(R.id.tv_recipe_pay_count);
-//        recipe_price_tv = (TextView) this.findViewById(R.id.tv_recipe_price);
-//        recipe_add_btn = (Button) this.findViewById(R.id.btn_recipe_pay_add);
-//        recipe_remove_btn = (Button) this.findViewById(R.id.btn_recipe_pay_remove);
-//        recipe_pay_btn = (Button) this.findViewById(R.id.btn_recipe_pay);
-//        recipe_add_btn.setOnClickListener(this);
-//        recipe_remove_btn.setOnClickListener(this);
-//        recipe_pay_btn.setOnClickListener(this);
 
 //        back_btn.setOnClickListener(this);
         recipe_favor_ll.setOnClickListener(this);
@@ -134,8 +127,8 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
 
 //        recipe_ingredient_tv.setText(recipeBean.getMeterials()[0].toString());
 //        recipe_step_tv.setText(recipeBean.getSteps()[0].toString());
-//        recipe_labal_tv.setText("#" + recipeBean.getLabels().toString());
-//        recipe_difficulty_tv.setText("#" + recipeBean.getLevel().toString());
+        recipe_labal_tv.setText("#" + recipeBean.getLabels().toString());
+        recipe_difficulty_tv.setText("#" + recipeBean.getLevel().toString());
         String ingredient = "";
         String str1 = recipeBean.getMeterials()[0].toString();
         JSONArray jsArray;

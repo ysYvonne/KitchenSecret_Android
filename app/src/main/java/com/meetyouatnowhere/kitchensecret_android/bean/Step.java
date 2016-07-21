@@ -5,7 +5,9 @@ package com.meetyouatnowhere.kitchensecret_android.bean;
  */
 public class Step{
     String detail;
-
+    public Step(){
+        detail="";
+    }
     public String getDetail() {
         return detail;
     }

@@ -11,6 +11,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +40,7 @@ import com.meetyouatnowhere.kitchensecret_android.util.KitchenRestClient;
 import com.meetyouatnowhere.kitchensecret_android.util.SharedPreferencesUtil;
 
 import org.apache.http.Header;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -91,10 +94,8 @@ private TextView stepcontent;
     private static final String BOUNDARY = "---------------------------"+ UUID.randomUUID();
     private static final String LINEEND = "\r\n";
     private static final String FORMNAME="userfile";
-    private int ADD_M =1;
-    private int DEL_M =0;
-    private int ADD_S=3;
-    private int DEL_S=2;
+    private int M =1;
+    private int S=0;
     public AddRecipeFragment() {
         // Required empty public constructor
     }
@@ -102,41 +103,59 @@ private TextView stepcontent;
     Handler handler=new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
-            if(msg.what== ADD_M){
-                materialList.add((Material) msg.obj);
-                Log.i("list","add"+materialList.toString());
+            if(msg.what== M){
+                Log.i("list","remove material"+materialList.toString());
                 matrialAddViewAdapter=new MatrialAddViewAdapter(getActivity());
                 materials.setAdapter(matrialAddViewAdapter);
                 matrialAddViewAdapter.notifyDataSetChanged();
+//                stepcontent.setText(materitalFormatter(materialList).toString());
             }
-            if(msg.what== DEL_M){
-                int pos=msg.arg1;
-                materialList.remove(pos);
-                Log.i("list","remove"+materialList.toString());
-                matrialAddViewAdapter=new MatrialAddViewAdapter(getActivity());
-                materials.setAdapter(matrialAddViewAdapter);
-                matrialAddViewAdapter.notifyDataSetChanged();
-            }
-            if(msg.what== ADD_S){
-                stepList.add((Step) msg.obj);
-                Log.i("list","add"+stepList.toString());
+            if(msg.what== S){
+                Log.i("list","remove step"+stepList.toString());
                 stepAddViewAdapter=new StepAddViewAdapter(getActivity());
                 steps.setAdapter(stepAddViewAdapter);
                 stepAddViewAdapter.notifyDataSetChanged();
-                stepcontent.setText(stepList.toString());
-            }
-            if(msg.what== DEL_S){
-                int pos=msg.arg1;
-                stepList.remove(pos);
-                Log.i("list","remove"+stepList.toString());
-                stepAddViewAdapter=new StepAddViewAdapter(getActivity());
-                steps.setAdapter(stepAddViewAdapter);
-                stepAddViewAdapter.notifyDataSetChanged();
-                stepcontent.setText(stepList.toString());
+//                stepcontent.setText(stepFormatter(stepList).toString());
             }
             return false;
         }
     });
+
+    private JSONArray stepFormatter(List<Step> steps){
+        try{
+            JSONArray array=new JSONArray();
+            for(int i=0;i<steps.size();i++){
+                JSONObject json=new JSONObject();
+                json.put("detail",steps.get(i).getDetail());
+                array.put(json);
+            }
+            Log.i("formatter",array.toString());
+            return array;
+
+        }catch (Exception e){
+
+        }
+        return null;
+    }
+
+    private JSONArray materitalFormatter(List<Material> materials){
+        try{
+            JSONArray array=new JSONArray();
+            for(int i=0;i<materials.size();i++){
+                JSONObject json=new JSONObject();
+                json.put("name",materials.get(i).getName());
+                json.put("amount",materials.get(i).getAmount());
+                array.put(json);
+            }
+            Log.i("formatter",array.toString());
+            return array;
+
+        }catch (Exception e){
+
+        }
+        return null;
+    }
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -248,7 +267,8 @@ private TextView stepcontent;
         params.put("calorie",calorie);
         params.put("makeTime",maketime);
         params.put("peopleNum",peoplenum);
-        params.put("steps","4");
+        params.put("steps",stepFormatter(stepList));
+        params.put("meterials",materitalFormatter(materialList));
         try{
             params.put("picture",new File(picturePath));
         }catch (Exception e){
@@ -365,7 +385,6 @@ private TextView stepcontent;
 
         @Override
         public int getCount() {
-            Log.i("list",materialList.size()+"");
             return materialList.size();
         }
 
@@ -392,27 +411,62 @@ private TextView stepcontent;
                convertView.setTag(holder);
            }else{
                holder=(ViewHolder)convertView.getTag();
-               holder.name_add.setText(materialList.get(position).getName());
-               holder.amount_add.setText(materialList.get(position).getAmount());
            }
+            holder.name_add.setText(materialList.get(position).getName());
+            holder.amount_add.setText(materialList.get(position).getAmount());
+            holder.name_add.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    final String name=s.toString();
+                    holder.amount_add.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+                            Material m=new Material();
+                            m.setName(name);
+                            m.setAmount(s.toString());
+                            materialList.set(position,m);
+                        }
+                    });
+                }
+            });
+
+
             holder.btn_add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Material m=new Material();
-                    m.setName(holder.name_add.getText().toString()+"");
-                    m.setAmount(holder.amount_add.getText().toString()+"");
+                    materialList.add(m);
                     Message message=new Message();
-                    message.what= ADD_M;
-                    message.obj=m;
+                    message.what= M;
                     handler.sendMessage(message);
                 }
             });
             holder.btn_cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    materialList.remove(position);
                     Message message=new Message();
-                    message.what= DEL_M;
-                    message.arg1=position;
+                    message.what= M;
                     handler.sendMessage(message);
                 }
             });
@@ -467,24 +521,40 @@ private TextView stepcontent;
             }
             holder.step_text.setText(stepList.get(position).getDetail());
             holder.step_text.setHint("第"+(position+1)+"步");
+            holder.step_text.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    Step step=new Step();
+                    step.setDetail(s.toString());
+                    stepList.set(position,step);
+                }
+            });
             holder.btn_add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Step s=new Step();
-                    s.setDetail(holder.step_text.getText().toString().trim());
-                    Log.i("step",s.getDetail());
+                    Step step=new Step();
+                    stepList.add(step);
                     Message message=new Message();
-                    message.what= ADD_S;
-                    message.obj=s;
+                    message.what= S;
                     handler.sendMessage(message);
                 }
             });
             holder.btn_cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    stepList.remove(position);
                     Message message=new Message();
-                    message.what= DEL_S;
-                    message.arg1=position;
+                    message.what= S;
                     handler.sendMessage(message);
                 }
             });
