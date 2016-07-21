@@ -151,19 +151,13 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
             startActivity(intent);
 //            startActivityForResult(intent, request);
         }
-        return view;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
         mContext = getActivity();
 
-        addRecipe_btn = (Button) getActivity().findViewById(R.id.btn_add_recipe);
+        addRecipe_btn = (Button) view.findViewById(R.id.btn_add_recipe);
         searchIconDefault = R.mipmap.search_icon;
         searchIconClear = R.mipmap.search_delete;
-        search_btn = (Button) getActivity().findViewById(R.id.btn_search);
-        search_et = (EditText) getActivity().findViewById(R.id.et_search_text);
+        search_btn = (Button) view.findViewById(R.id.btn_search);
+        search_et = (EditText) view.findViewById(R.id.et_search_text);
         search_et.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -198,11 +192,11 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
         addRecipe_btn.setOnClickListener(this);
         search_btn.setOnClickListener(this);
 
-        swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swipe_refresh_myrecipe);
+        swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_myrecipe);
         swipeLayout.setOnRefreshListener(this);
         //加载颜色是循环播放的，只要没有完成刷新就会一直循环，color1>color2>color3>color4
         swipeLayout.setColorSchemeResources(android.R.color.holo_red_light,android.R.color.holo_green_light,android.R.color.holo_blue_bright,android.R.color.holo_orange_light);
-        recipeListView = (ListView) getActivity().findViewById(R.id.recipeListView);
+        recipeListView = (ListView) view.findViewById(R.id.recipeListView);
         myRecipeAdapter =new RecipeAdapter(getActivity(),false);
         recipeListView.setAdapter(myRecipeAdapter);
 
@@ -211,6 +205,13 @@ public class PersonSpaceFragment extends Fragment implements SwipeRefreshLayout.
         progress.show();
 
         getAllRecipees();
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
     }
 
     @Override
