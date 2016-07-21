@@ -124,6 +124,104 @@
 
                     <TableRow>
                         <TextView
+                            android:id="@+id/calorie_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="卡路里："
+                            android:textSize="20sp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@mipmap/login_input"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+
+                            <EditText
+                                android:id="@+id/calorie_edit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:focusableInTouchMode="true"
+                                android:gravity="center_vertical"
+                                android:padding="5dp"
+                                android:paddingRight="30dp"
+                                android:textColor="@color/edit_text_color"
+                                android:textSize="20sp" />
+                        </LinearLayout>
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:id="@+id/time_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="所需时间："
+                            android:textSize="20sp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@mipmap/login_input"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+
+                            <EditText
+                                android:id="@+id/time_edit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:focusableInTouchMode="true"
+                                android:gravity="center_vertical"
+                                android:padding="5dp"
+                                android:paddingRight="30dp"
+                                android:textColor="@color/edit_text_color"
+                                android:textSize="20sp" />
+                        </LinearLayout>
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:id="@+id/people_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="适宜人数："
+                            android:textSize="20sp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@mipmap/login_input"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+
+                            <EditText
+                                android:id="@+id/people_edit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:focusableInTouchMode="true"
+                                android:gravity="center_vertical"
+                                android:padding="5dp"
+                                android:paddingRight="30dp"
+                                android:textColor="@color/edit_text_color"
+                                android:textSize="20sp" />
+                        </LinearLayout>
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
                             android:id="@+id/recipeDescription_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -177,6 +275,10 @@
                     android:textSize="20sp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginTop="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/step_content"/>
 
                 <ListView
                     android:layout_width="wrap_content"

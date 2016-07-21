@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.meetyouatnowhere.kitchensecret_android.bean.JsonTobean;
@@ -60,10 +61,16 @@ public class AddRecipeFragment extends PictureSelectFragment implements View.OnC
     // TODO: Rename and change types of parameters
     private EditText recipe_name_et;
     private EditText recipe_description_et;
+    private EditText recipe_calorie;
+    private EditText recipe_maketime;
+    private EditText recipe_peoplenum;
     private Button recipe_add_btn;
     private ImageView recipe_picture;
     private String recipe_name;
     private String recipe_description;
+    private String calorie;
+    private String maketime;
+    private String peoplenum;
     private SharedPreferences sp;
     private ProgressDialog progress;
     private RecipeBean recipeBean;
@@ -74,7 +81,7 @@ public class AddRecipeFragment extends PictureSelectFragment implements View.OnC
     private ListView steps;
     private MatrialAddViewAdapter matrialAddViewAdapter;
     private StepAddViewAdapter stepAddViewAdapter;
-
+private TextView stepcontent;
     //    private OnFragmentInteractionListener mListener;
     List<Material> materialList=new ArrayList<Material>();
     List<Step> stepList=new ArrayList<Step>();
@@ -116,6 +123,7 @@ public class AddRecipeFragment extends PictureSelectFragment implements View.OnC
                 stepAddViewAdapter=new StepAddViewAdapter(getActivity());
                 steps.setAdapter(stepAddViewAdapter);
                 stepAddViewAdapter.notifyDataSetChanged();
+                stepcontent.setText(stepList.toString());
             }
             if(msg.what== DEL_S){
                 int pos=msg.arg1;
@@ -124,6 +132,7 @@ public class AddRecipeFragment extends PictureSelectFragment implements View.OnC
                 stepAddViewAdapter=new StepAddViewAdapter(getActivity());
                 steps.setAdapter(stepAddViewAdapter);
                 stepAddViewAdapter.notifyDataSetChanged();
+                stepcontent.setText(stepList.toString());
             }
             return false;
         }
@@ -198,6 +207,9 @@ public class AddRecipeFragment extends PictureSelectFragment implements View.OnC
     public void initView(View view) {
         recipe_name_et = (EditText) view.findViewById(R.id.recipeName_edit);
         recipe_description_et = (EditText) view.findViewById(R.id.recipeDescription_editText);
+        recipe_calorie=(EditText)view.findViewById(R.id.calorie_edit);
+        recipe_maketime=(EditText)view.findViewById(R.id.time_edit);
+        recipe_peoplenum=(EditText)view.findViewById(R.id.people_edit);
         recipe_add_btn = (Button) view.findViewById(R.id.okay_btn);
         recipe_picture = (ImageView) view.findViewById(R.id.img_recipe_picture);
         materials=(ListView)view.findViewById(R.id.materials);
@@ -211,6 +223,8 @@ public class AddRecipeFragment extends PictureSelectFragment implements View.OnC
         steps.setAdapter(stepAddViewAdapter);
         recipe_add_btn.setOnClickListener(this);
         recipe_picture.setOnClickListener(this);
+
+        stepcontent=(TextView)view.findViewById(R.id.step_content);
     }
 
     /*public String encodeBase64File(String path){
@@ -227,13 +241,13 @@ public class AddRecipeFragment extends PictureSelectFragment implements View.OnC
         return null;
     }*/
 
-    public void addRecipe(String recipe_name, String recipe_description) {
+    public void addRecipe(String recipe_name, String recipe_description,String calorie,String maketime,String peoplenum) {
         RequestParams params = new RequestParams();
         params.put("name", recipe_name);
         params.put("description", recipe_description);
-        params.put("calorie","1");
-        params.put("makeTime","2");
-        params.put("peopleNum","3");
+        params.put("calorie",calorie);
+        params.put("makeTime",maketime);
+        params.put("peopleNum",peoplenum);
         params.put("steps","4");
         try{
             params.put("picture",new File(picturePath));
@@ -304,19 +318,31 @@ public class AddRecipeFragment extends PictureSelectFragment implements View.OnC
             case R.id.okay_btn:
                 recipe_name = recipe_name_et.getText().toString().trim();
                 recipe_description = recipe_description_et.getText().toString().trim();
+                calorie=recipe_calorie.getText().toString().trim();
+                maketime=recipe_maketime.getText().toString().trim();
+                peoplenum=recipe_peoplenum.getText().toString().trim();
                 if (recipe_name == null || "".equals(recipe_name)) {
                     recipe_name_et.requestFocus();
-                    Toast.makeText(getActivity(), "Please enter the recipe name.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "请输入菜谱名称.", Toast.LENGTH_SHORT).show();
                 } else if (recipe_description == null || "".equals(recipe_description)) {
                     recipe_description_et.requestFocus();
-                    Toast.makeText((getActivity()), "Please enter the recipe description.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText((getActivity()), "请输入菜谱描述.", Toast.LENGTH_SHORT).show();
+                } else if (calorie == null || "".equals(calorie)) {
+                    recipe_calorie.requestFocus();
+                    Toast.makeText((getActivity()), "请输入卡路里.", Toast.LENGTH_SHORT).show();
+                } else if (maketime == null || "".equals(maketime)) {
+                    recipe_maketime.requestFocus();
+                    Toast.makeText((getActivity()), "请输入制作耗时.", Toast.LENGTH_SHORT).show();
+                } else if (peoplenum == null || "".equals(peoplenum)) {
+                    recipe_peoplenum.requestFocus();
+                    Toast.makeText((getActivity()), "请输入适宜人数.", Toast.LENGTH_SHORT).show();
                 } else {
                     InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(recipe_name_et.getWindowToken(), 0);
                     imm.hideSoftInputFromWindow(recipe_description_et.getWindowToken(), 0);
-                    progress.setMessage("Add recipe...");
+                    progress.setMessage("上传菜谱中...");
                     progress.show();
-                    addRecipe(recipe_name, recipe_description);
+                    addRecipe(recipe_name, recipe_description,calorie,maketime,peoplenum);
                 }
                 break;
 //            case R.id.img_recipe_picture:
@@ -366,6 +392,8 @@ public class AddRecipeFragment extends PictureSelectFragment implements View.OnC
                convertView.setTag(holder);
            }else{
                holder=(ViewHolder)convertView.getTag();
+               holder.name_add.setText(materialList.get(position).getName());
+               holder.amount_add.setText(materialList.get(position).getAmount());
            }
             holder.btn_add.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -437,11 +465,14 @@ public class AddRecipeFragment extends PictureSelectFragment implements View.OnC
             }else{
                 holder=(ViewHolder)convertView.getTag();
             }
+            holder.step_text.setText(stepList.get(position).getDetail());
+            holder.step_text.setHint("第"+(position+1)+"步");
             holder.btn_add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Step s=new Step();
-                    s.setDetail(holder.step_text.getText().toString());
+                    s.setDetail(holder.step_text.getText().toString().trim());
+                    Log.i("step",s.getDetail());
                     Message message=new Message();
                     message.what= ADD_S;
                     message.obj=s;
